@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e1aab73da22cc4890818555df7d414, type: 3}
+  m_Name: Hierarchy Color Studio
+  m_EditorClassIdentifier: CryNet.HierarchyColorStudio.Editor::CryNet.HierarchyColorStudio.HierarchyColorStore
+  m_Version: 1
+  m_Appearance:
+    m_Enabled: 1
+    m_Decorations: 3
+    m_MarkerShape: 0
+    m_MarkerPlacement: 0
+    m_MarkerSize: 8
+    m_TintOpacity: 0.22
+    m_TintScope: 0
+    m_LabelBrightness: 1
+    m_LabelFillsBackground: 0
+    m_RowBackgroundDark: {r: 0.2196, g: 0.2196, b: 0.2196, a: 1}
+    m_RowBackgroundLight: {r: 0.7843, g: 0.7843, b: 0.7843, a: 1}
+    m_SelectedRowBehavior: 1
+    m_HoverBehavior: 0
+    m_LabelOffset: 18
+    m_DefaultApplyScope: 0
+    m_DebugLogging: 0
+  m_Presets:
+  - m_Id: 17a2ecba9ca346b79cba47f555aecb2e
+    m_Name: Red
+    m_Color: E74C3CFF
+  - m_Id: 591fdaf8dbac417f8fa3469f0b37c97f
+    m_Name: Orange
+    m_Color: E67E22FF
+  - m_Id: a0c6a120d63546f582439c85a7d1a185
+    m_Name: Amber
+    m_Color: F1C40FFF
+  - m_Id: 2585984ee8824ac29fefd5c8a91367ce
+    m_Name: Green
+    m_Color: 2ECC71FF
+  - m_Id: 92093ad25bbb4b918a94deaf2ea62d1a
+    m_Name: Teal
+    m_Color: 1ABC9CFF
+  - m_Id: 0e45fa56625e41b6bc8d82a2046075aa
+    m_Name: Blue
+    m_Color: 3498DBFF
+  - m_Id: db15ef1d011e4e688b8768c8fbcd755e
+    m_Name: Indigo
+    m_Color: 5B6CE8FF
+  - m_Id: aeac2241416a4efba31314b1212684f8
+    m_Name: Violet
+    m_Color: 9B59B6FF
+  - m_Id: d74913f410ff4535bd68373910c7ab17
+    m_Name: Pink
+    m_Color: E85A9BFF
+  - m_Id: ec9d70146df847688749508831ed005d
+    m_Name: Slate
+    m_Color: 7F8C8DFF
+  m_Assignments:
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1790670796-0
+    m_Color: 2ECC71FF
+    m_PresetId: 2585984ee8824ac29fefd5c8a91367ce
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-453595394-0
+    m_Color: 2ECC71FF
+    m_PresetId: 2585984ee8824ac29fefd5c8a91367ce
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1081790827-0
+    m_Color: 2ECC71FF
+    m_PresetId: 2585984ee8824ac29fefd5c8a91367ce
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-726179141-0
+    m_Color: 3498DBFF
+    m_PresetId: 0e45fa56625e41b6bc8d82a2046075aa
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1939740767-0
+    m_Color: 1ABC9CFF
+    m_PresetId: 92093ad25bbb4b918a94deaf2ea62d1a
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1840623042-0
+    m_Color: E74C3CFF
+    m_PresetId: 17a2ecba9ca346b79cba47f555aecb2e
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-2078059830-0
+    m_Color: F1C40FFF
+    m_PresetId: a0c6a120d63546f582439c85a7d1a185
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-645665838-0
+    m_Color: E67E22FF
+    m_PresetId: 591fdaf8dbac417f8fa3469f0b37c97f
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1586658849-0
+    m_Color: 9B59B6FF
+    m_PresetId: aeac2241416a4efba31314b1212684f8
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1301795689-0
+    m_Color: E85A9BFF
+    m_PresetId: d74913f410ff4535bd68373910c7ab17
+  - m_Key: GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-261530461-0
+    m_Color: E85A9BFF
+    m_PresetId: d74913f410ff4535bd68373910c7ab17

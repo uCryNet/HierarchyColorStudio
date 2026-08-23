@@ -1,0 +1,113 @@
+{
+    "kind": "CryNet.HierarchyColorStudio.ColorSet",
+    "version": 1,
+    "presets": [
+        {
+            "id": "17a2ecba9ca346b79cba47f555aecb2e",
+            "name": "Red",
+            "color": "E74C3CFF"
+        },
+        {
+            "id": "591fdaf8dbac417f8fa3469f0b37c97f",
+            "name": "Orange",
+            "color": "E67E22FF"
+        },
+        {
+            "id": "a0c6a120d63546f582439c85a7d1a185",
+            "name": "Amber",
+            "color": "F1C40FFF"
+        },
+        {
+            "id": "2585984ee8824ac29fefd5c8a91367ce",
+            "name": "Green",
+            "color": "2ECC71FF"
+        },
+        {
+            "id": "92093ad25bbb4b918a94deaf2ea62d1a",
+            "name": "Teal",
+            "color": "1ABC9CFF"
+        },
+        {
+            "id": "0e45fa56625e41b6bc8d82a2046075aa",
+            "name": "Blue",
+            "color": "3498DBFF"
+        },
+        {
+            "id": "db15ef1d011e4e688b8768c8fbcd755e",
+            "name": "Indigo",
+            "color": "5B6CE8FF"
+        },
+        {
+            "id": "aeac2241416a4efba31314b1212684f8",
+            "name": "Violet",
+            "color": "9B59B6FF"
+        },
+        {
+            "id": "d74913f410ff4535bd68373910c7ab17",
+            "name": "Pink",
+            "color": "E85A9BFF"
+        },
+        {
+            "id": "ec9d70146df847688749508831ed005d",
+            "name": "Slate",
+            "color": "7F8C8DFF"
+        }
+    ],
+    "assignments": [
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1790670796-0",
+            "color": "2ECC71FF",
+            "preset": "2585984ee8824ac29fefd5c8a91367ce"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-453595394-0",
+            "color": "2ECC71FF",
+            "preset": "2585984ee8824ac29fefd5c8a91367ce"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1081790827-0",
+            "color": "2ECC71FF",
+            "preset": "2585984ee8824ac29fefd5c8a91367ce"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-726179141-0",
+            "color": "3498DBFF",
+            "preset": "0e45fa56625e41b6bc8d82a2046075aa"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1939740767-0",
+            "color": "1ABC9CFF",
+            "preset": "92093ad25bbb4b918a94deaf2ea62d1a"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1840623042-0",
+            "color": "E74C3CFF",
+            "preset": "17a2ecba9ca346b79cba47f555aecb2e"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-2078059830-0",
+            "color": "F1C40FFF",
+            "preset": "a0c6a120d63546f582439c85a7d1a185"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-645665838-0",
+            "color": "E67E22FF",
+            "preset": "591fdaf8dbac417f8fa3469f0b37c97f"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1586658849-0",
+            "color": "9B59B6FF",
+            "preset": "aeac2241416a4efba31314b1212684f8"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-1301795689-0",
+            "color": "E85A9BFF",
+            "preset": "d74913f410ff4535bd68373910c7ab17"
+        },
+        {
+            "key": "GlobalObjectId_V1-2-1418f92b8d7271aacba8778b8453d3f1-261530461-0",
+            "color": "E85A9BFF",
+            "preset": "d74913f410ff4535bd68373910c7ab17"
+        }
+    ]
+}

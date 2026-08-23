@@ -1,0 +1,933 @@
+Unity Editor version:    6000.5.5f1 (d16e074b49fd)
+Branch:                  6000.5/staging
+Build type:              Release
+Batch mode:              YES
+System name:             Linux
+Distro version:          #138~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Aug  7 13:43:15 UTC 
+Kernel version:          6.8.0-138-generic
+Architecture:            x86_64
+Available memory:        64200 MB
+Date:                    2026-08-22T21:37:00Z
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Initialize udev device monitor.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-crynet" at "2026-08-22T21:37:00.928563Z"
+[SignatureVerifier] Application signature verification not supported on this platform.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-crynet"
+[Licensing::IpcConnector] LicenseClient-crynet channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-crynet-6000.5.5" at "2026-08-22T21:37:00.930806Z"
+
+COMMAND LINE ARGUMENTS:
+/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Unity
+-batchmode
+-nographics
+-silent-crashes
+-disable-assembly-updater
+-projectPath
+/media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev
+-quit
+-logFile
+/media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dist/compile1.log
+[SignatureVerifier] Application signature verification not supported on this platform.
+Successfully changed project path to: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              fced5173dc694fb1b0638a9fb7cd26b4
+  Correlation Id:          12942f19deb280bcaa7a1e6993db90f4
+  External correlation Id: 4948205443290636212
+  Machine Id:              lF+nD3jF1V9hST0AjrlIBWiEwFY=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-crynet-6000.5.5" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-crynet-6000.5.5-notifications" at "2026-08-22T21:37:00.931907Z"
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 7972507634729-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.00s
+/media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [130141733718848]  Target information:
+
+Player connection [130141733718848]  * "[IP] 192.168.0.104 [Port] 55505 [Flags] 2 [Guid] 2955850502 [EditorId] 2955850502 [Version] 1048832 [Id] LinuxEditor(16,192.168.0.104) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+
+Player connection [130141733718848]  * "[IP] 172.18.0.1 [Port] 55505 [Flags] 2 [Guid] 2955850502 [EditorId] 2955850502 [Version] 1048832 [Id] LinuxEditor(16,192.168.0.104) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+
+Player connection [130141733718848]  * "[IP] 172.17.0.1 [Port] 55505 [Flags] 2 [Guid] 2955850502 [EditorId] 2955850502 [Version] 1048832 [Id] LinuxEditor(16,192.168.0.104) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+
+Player connection [130141733718848] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [130141733718848] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-25538" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Rebuilding Library because the asset database could not be found!
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.5f1 (d16e074b49fd)
+[Subsystems] Discovering subsystems at path /media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = '/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed'
+Mono path[1] = '/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = '/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
+Mono config path = '/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56538
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.001710 seconds.
+Native extension for LinuxStandalone target not found
+Package Manager log level set to [2]
+[Licensing::Client] Successfully resolved entitlement details
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.817 seconds
+Domain Reload Profiling: 1240ms
+	BeginReloadAssembly (93ms)
+		CreateAndSetChildDomain (11ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (60ms)
+	LoadAllAssembliesAndSetupDomain (253ms)
+		LoadAssemblies (82ms)
+		AnalyzeDomain (181ms)
+			TypeCache.Refresh (179ms)
+				TypeCache.ScanAssembly (167ms)
+	FinalizeReload (819ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (88ms)
+			ProcessInitializeOnLoadAttributes (93ms)
+			ProcessInitializeOnLoadMethodAttributes (570ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Done resolving packages in 0.09 seconds
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Lock file was created
+[Package Manager] Registered 9 packages:
+  Built-in packages:
+    com.unity.test-framework@1.7.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.test-framework@773a3a4953ad)
+    com.unity.modules.imgui@1.0.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.modules.jsonserialize)
+    com.unity.modules.ui@1.0.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.modules.uielements)
+    com.unity.modules.hierarchycore@1.0.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.modules.hierarchycore)
+    com.unity.modules.physics@1.0.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.modules.physics)
+    com.unity.modules.animation@1.0.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.modules.animation)
+    com.unity.ext.nunit@2.1.0 (location: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev/Library/PackageCache/com.unity.ext.nunit@9054f8d1d690)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.00 seconds
+AcceleratorClientConnectionCallback - disconnected - :0
+[Assembly Updater] warning: Ignoring assembly Packages/com.unity.ext.nunit/net472/unity-custom/nunit.framework.dll as requested by command line parameter.
+Assembly Updater Post Process Assets time: 0.000037s
+[ScriptCompilation] Requested script compilation because: Assembly Definition File(s) changed
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://unix:/tmp/ilpp.sock-e6aa66559961bc38fd0b9c6acda330de
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping - application/grpc -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'gRPC - /UnityILPP.PostProcessing/Ping'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST http://ilpp/UnityILPP.PostProcessing/Ping - 200 - application/grpc 28.0722ms
+Starting: /media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/2400b0aEDbg.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev
+ExitCode: 4 Duration: 0s21ms
+[             ] Require frontend run.  Library/Bee/2400b0aEDbg.dag couldn't be loaded
+DisplayProgressbar: Compiling Scripts
+Starting: /media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/netcorerun/netcorerun "/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/ScriptCompilationBuildProgram.exe" "Library/Bee/2400b0aEDbg.dag.json" "Library/Bee/2400b0aEDbg-inputdata.json" "Library/Bee/buildprogram0.traceevents"
+WorkingDir: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev
+ExitCode: 0 Duration: 0s434ms
+Starting: /media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/2400b0aEDbg.dag" --continue-on-failure --dagfilejson="Library/Bee/2400b0aEDbg.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
+WorkingDir: /media/crynet/DATA/GAMEDEV/HierarchyColorStudio/Dev
+ExitCode: 3 Duration: 4s621ms
+Finished compiling graph: 180 nodes, 805 flattened edges (783 ToBuild, 6 ToUse), maximum node priority 37
+[  1/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.UIBuilderModule.dll_6E438DC008C71DCF.mvfrm
+[  2/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.UnityConnectModule.dll_7D8B50FDDE849F71.mvfrm
+[  3/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.VFXModule.dll_19104D8B9EB29C60.mvfrm
+[  4/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.UIAutomationModule.dll_32F2327856148317.mvfrm
+[  5/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.TilemapModule.dll_00CC4C2B85281BD6.mvfrm
+[  6/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.UIElementsModule.dll_45BE86B2CEAAF697.mvfrm
+[  7/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.UIElementsSamplesModule.dll_BC45C064A8DFC146.mvfrm
+[  8/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.UmbraModule.dll_757999F8ACB09CC1.mvfrm
+[  9/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.UIToolkitAuthoringModule.dll_3D77DA97BA302A19.mvfrm
+[ 10/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.VectorGraphicsModule.dll_1D2509C907ACBB8A.mvfrm
+[ 11/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.TreeModule.dll_17810C469A1EE87A.mvfrm
+[ 12/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/Unity.Scripting.dll_FAB63680A497E196.mvfrm
+[ 13/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.SubstanceModule.dll_C39A6D7D25C67CA8.mvfrm
+[ 14/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.U2DModule.dll_44E8F86ED44EFCBF.mvfrm
+[ 15/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.TextCoreTextEngineModule.dll_52097C7C2B2D5F77.mvfrm
+[ 16/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.TextRenderingModule.dll_29F9FCE613E37317.mvfrm
+[ 17/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.SpriteShapeModule.dll_D6BC1A623C92DA14.mvfrm
+[ 18/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.SpriteMaskModule.dll_D6D2BEE8FD36D28D.mvfrm
+[ 19/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.TerrainModule.dll_61CFE4AA6D6B3ACD.mvfrm
+[ 20/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.TextCoreFontEngineModule.dll_0A21460A9BA9A659.mvfrm
+[ 21/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.IdentifiersModule.dll_9BAA448C5BA380A7.mvfrm
+[ 22/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.InputForUIModule.dll_F10713BA3E2BF31A.mvfrm
+[ 23/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.InputLegacyModule.dll_5465D7B5311C6880.mvfrm
+[ 24/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.IMGUIModule.dll_F93149AB1738B5D4.mvfrm
+[ 25/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.HierarchyCoreModule.dll_8A16E31C30AA4251.mvfrm
+[ 26/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.HotReloadModule.dll_69891AD24B9E94C3.mvfrm
+[ 27/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.GraphicsStateCollectionSerializerModule.dll_8B10852DB86E0543.mvfrm
+[ 28/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.GridModule.dll_BA670678D2B3545D.mvfrm
+[ 29/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.DSPGraphModule.dll_1FAC66ABE6BF4724.mvfrm
+[ 30/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.VideoModule.dll_1FAE724AE21C0CF3.mvfrm
+[ 31/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.GameCenterModule.dll_EE54B9A0DE0B565E.mvfrm
+[ 32/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.CrashReportingModule.dll_EDEFEBE323814DBE.mvfrm
+[ 33/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ContentLoadModule.dll_5C3715D767AD5A7C.mvfrm
+[ 34/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ClusterRendererModule.dll_5958845E96DCE9FA.mvfrm
+[ 35/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AnimationModule.dll_E8405CCC706B7941.mvfrm
+[ 36/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ClusterInputModule.dll_FD27C613900C7237.mvfrm
+[ 37/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.CoreModule.dll_DCF5EA8ABA5EBE66.mvfrm
+[ 38/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.XRModule.dll_CC7CAFB660FD2CE6.mvfrm
+[ 39/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.GraphViewModule.dll_19BAE0A3960EA49B.mvfrm
+[ 40/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.GridAndSnapModule.dll_FDE0EF196151BE33.mvfrm
+[ 41/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.GIModule.dll_2223029BE0ED7049.mvfrm
+[ 42/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.dll_813C095DAD79D16A.mvfrm
+[ 43/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.GraphicsStateCollectionSerializerModule.dll_821CB83DEB6EBBDE.mvfrm
+[ 44/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.EditorToolbarModule.dll_BCB769ECC29A1786.mvfrm
+[ 45/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.GenericRemoteModule.dll_1CBCA9F5AAA88F35.mvfrm
+[ 46/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.GIModule.dll_E3B4710C75703C7E.mvfrm
+[ 47/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.GraphToolkitModule.dll_9E2E2832AA4FE8DC.mvfrm
+[ 48/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.DiagnosticsModule.dll_F4280897DDED0144.mvfrm
+[ 49/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.EmbreeModule.dll_85BA51BBD91B40E4.mvfrm
+[ 50/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.ContentLoadModule.dll_56714648557349F7.mvfrm
+[ 51/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.CoreBusinessMetricsModule.dll_3E2D066A7F8BC43C.mvfrm
+[ 52/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.SketchUpModule.dll_075928123BC53A93.mvfrm
+[ 53/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.ClothModule.dll_618D4ADAF9A6D032.mvfrm
+[ 54/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.CoreModule.dll_B9D517381259533B.mvfrm
+[ 55/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.BuildProfileModule.dll_82514387B9A0BA57.mvfrm
+[ 56/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.DeviceSimulatorModule.dll_53ABC1ED2721DC76.mvfrm
+[ 57/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.ShaderFoundryModule.dll_1F36AAEDE4363E4C.mvfrm
+[ 58/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.AIModule.dll_4B7827FED9C15464.mvfrm
+[ 59/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.AccessibilityModule.dll_86BB541A49046636.mvfrm
+[ 60/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.AssetComplianceModule.dll_8C86D1DBA1DDC0A3.mvfrm
+[ 61/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.AdaptivePerformanceModule.dll_BE420CF059449542.mvfrm
+[ 62/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.ShaderCompilationModule.dll_C81422DC8BE3B616.mvfrm
+[ 63/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.ShaderBuildSettingsModule.dll_C66853992C43C684.mvfrm
+[ 64/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.SceneViewModule.dll_586AC3AB8B3171A9.mvfrm
+[ 65/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.SceneTemplateModule.dll_E056DAAAC186C1BE.mvfrm
+[ 66/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.SafeModeModule.dll_1F4442C1F0939E7C.mvfrm
+[ 67/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.QuickSearchModule.dll_7F3789A536C3FD9D.mvfrm
+[ 68/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.QuickInstallModule.dll_613091C6FB27288A.mvfrm
+[ 69/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.PropertiesModule.dll_1AE18B974EB2A14F.mvfrm
+[ 70/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.GridModule.dll_974633262AADE932.mvfrm
+[ 71/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.PresetsUIModule.dll_D52119859866FCA0.mvfrm
+[ 72/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.PlayModeModule.dll_6538347B8F5CADE3.mvfrm
+[ 73/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.PhysicsModule.dll_4789693B97ACF1DF.mvfrm
+[ 74/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.MultiplayerModule.dll_3D0309943FB82F82.mvfrm
+[ 75/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.PhysicsCore2DModule.dll_747F2BC5A7A95B20.mvfrm
+[ 76/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.Physics2DModule.dll_7F005BD42BE8BEF1.mvfrm
+[ 77/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.MediaModule.dll_C66507719DD679DC.mvfrm
+[ 78/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.MathematicsModule.dll_E26F9AE0FB68993E.mvfrm
+[ 79/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.LightingModule.dll_194BBA3E437F67A8.mvfrm
+[ 80/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.HierarchyModule.dll_072EE77F53EDE35D.mvfrm
+[ 81/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.ProjectAuditorModule.dll_D0927DF9CA3F0AA1.mvfrm
+[ 82/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TextCoreFontEngineModule.dll_8880C15DAEA76524.mvfrm
+[ 83/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TLSModule.dll_A453577037F540F8.mvfrm
+[ 84/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.U2DRuntimeModule.dll_130AE3599E1E49F8.mvfrm
+[ 85/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.UnityAdditionalFile.txt
+[ 86/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.rsp2
+[ 87/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TextRenderingModule.dll_B63AEF0D8CDBF63C.mvfrm
+[ 88/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TextCoreTextEngineModule.dll_D068F7CF3E2B1E42.mvfrm
+[ 89/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UIModule.dll_855A57BBA1858DDB.mvfrm
+[ 90/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UIElementsModule.dll_466CF3FAD0EF0FE2.mvfrm
+[ 91/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.SubstanceModule.dll_79805E660B462E8D.mvfrm
+[ 92/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityAnalyticsCommonModule.dll_CEB95A10028AD783.mvfrm
+[ 93/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityConsentModule.dll_3C906C38E617366C.mvfrm
+[ 94/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.VirtualTexturingModule.dll_9F9286B01196E584.mvfrm
+[ 95/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.dll_B3E050360BED5E4F.mvfrm
+[ 96/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.VFXModule.dll_2531EFDF0E62AA65.mvfrm
+[ 97/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityCurlModule.dll_1B5CFDFDE07F6B2E.mvfrm
+[ 98/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityConnectModule.dll_6AEAD50CD90CA01C.mvfrm
+[ 99/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.InputModule.dll_274771F4C73F4697.mvfrm
+[100/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.JSONSerializeModule.dll_7313CF7DC13849E5.mvfrm
+[101/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.LocalizationModule.dll_3B74906627886530.mvfrm
+[102/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.MarshallingModule.dll_6B895B2B7D52DFE1.mvfrm
+[103/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.PerformanceReportingModule.dll_337A9CCBE8A23925.mvfrm
+[104/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.MathematicsModule.dll_E8356A700DA2A9C3.mvfrm
+[105/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.MultiplayerModule.dll_42C8D92351F24007.mvfrm
+[106/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.dll.mvfrm.rsp
+[107/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.rsp
+[108/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.RenderAs2DModule.dll_5CC7BB65305104D1.mvfrm
+[109/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.PropertiesModule.dll_1B8FF8DF50F6BA9A.mvfrm
+[110/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.PhysicsBackendPhysXModule.dll_58E5893377462B06.mvfrm
+[111/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll_F906FBE46E488D9F.mvfrm
+[112/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.PhysicsModule.dll_3A0421E5FCBBD924.mvfrm
+[113/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ScriptingModule.dll_FF61B592EFF327F4.mvfrm
+[114/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.SpriteMaskModule.dll_D7812C30FF7AEBD8.mvfrm
+[115/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ShaderVariantAnalyticsModule.dll_2A9758CB34F95EAD.mvfrm
+[116/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.SharedInternalsModule.dll_495BC0E4902F9D3E.mvfrm
+[117/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.SpriteShapeModule.dll_DC81E9F14ECCEA99.mvfrm
+[118/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.StreamingModule.dll_9CD54A1CBFF3307F.mvfrm
+[119/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityWebRequestModule.dll_D6E989B923F63C6D.mvfrm
+[120/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityWebRequestAssetBundleModule.dll_9C3FC389CE378419.mvfrm
+[121/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityAnalyticsModule.dll_60A1A5F93DBA2B48.mvfrm
+[122/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityWebRequestAudioModule.dll_AB76F0AA6F0D03BD.mvfrm
+[123/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UmbraModule.dll_3BA6565CDE2DCD66.mvfrm
+[124/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityWebRequestTextureModule.dll_69DD3B1A892D2332.mvfrm
+[125/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TilemapModule.dll_F34704D5EA37031B.mvfrm
+[126/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.UnityWebRequestWWWModule.dll_9B2B3D2B2DEADAAE.mvfrm
+[127/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TerrainPhysicsModule.dll_417CDE02AAD5D3D9.mvfrm
+[128/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.VectorGraphicsModule.dll_D8496B6423994F95.mvfrm
+[129/177    0s] MovedFromExtractor-Combine Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.dll.mvfrm
+[130/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.VehiclesModule.dll_921DFEC1EE88459E.mvfrm
+[           0s] Csc Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.dll (+2 others) [CacheMiss d61d1ed0a59e00010385a1ddd9087d9f00000000000000000000000000000006]
+[131/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AccessibilityModule.dll_12FC4641C1FCE95B.mvfrm
+[132/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ScreenCaptureModule.dll_8CFB7D02D5A47647.mvfrm
+[133/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.NVIDIAModule.dll_DDCB69A336B85B92.mvfrm
+[134/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ParticleSystemModule.dll_4102352F9192D94C.mvfrm
+[135/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.InsightsModule.dll_B421CDD2FEDBC582.mvfrm
+[136/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.Physics2DModule.dll_34E64CBD116870D6.mvfrm
+[137/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.rsp2
+[138/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.UnityAdditionalFile.txt
+[139/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.PhysicsCore2DModule.dll_00C01DED20A1DE45.mvfrm
+[140/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.HierarchyModule.dll_BD14D868396D9542.mvfrm
+[141/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ImageConversionModule.dll_C54A820F1901A1EE.mvfrm
+[142/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AdaptivePerformanceModule.dll_7ED1A1A69489E847.mvfrm
+[143/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ARModule.dll_43597E91A25BE6F8.mvfrm
+[144/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.DirectorModule.dll_1A5B0542745E7603.mvfrm
+[145/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AMDModule.dll_A5C3940B10C4C5A5.mvfrm
+[146/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AudioModule.dll_C0D1AA44510721F3.mvfrm
+[147/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.Graphs.dll_00117337E7B2E26D.mvfrm
+[148/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.dll.mvfrm.rsp
+[149/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.rsp
+[150/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.UnityAdditionalFile.txt
+[151/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.rsp2
+[152/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.dll.mvfrm.rsp
+[153/177    0s] WriteText Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.rsp
+[154/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AIModule.dll_89E6B98E453E882F.mvfrm
+[155/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.XRModule.dll_0AEB4145CC7A60B1.mvfrm
+[156/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.SubsystemsModule.dll_422E9292CDC2D3EB.mvfrm
+[157/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.LinuxStandalone.Extensions.dll_1D20BF94C41CB105.mvfrm
+[158/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.WindModule.dll_5344C5B34B953CCF.mvfrm
+[159/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AssetBundleModule.dll_C320BC96992AB28F.mvfrm
+[160/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.AndroidJNIModule.dll_C4076F8617CA656D.mvfrm
+[161/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.VideoModule.dll_E5DB2EAF13993D98.mvfrm
+[162/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TerrainModule.dll_544A9D54D27A2212.mvfrm
+[163/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.ClothModule.dll_27BA073F2B2400D7.mvfrm
+[164/177    2s] Csc Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.dll (+2 others)
+[           0s] Csc Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.dll (+2 others) [CacheWrite d61d1ed0a59e00010385a1ddd9087d9f00000000000000000000000000000006]
+[165/177    0s] CopyFiles Library/ScriptAssemblies/UnityEngine.TestRunner.pdb
+[166/177    0s] CopyFiles Library/ScriptAssemblies/UnityEngine.TestRunner.dll
+[167/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEngine.TestRunner.ref.dll_14178E56E8AE09F1.mvfrm
+[168/177    0s] MovedFromExtractor-Combine Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.dll.mvfrm
+[           0s] Csc Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.dll (+2 others) [CacheMiss 59c5a307027aa9287ae5429f719cd32500000000000000000000000000000006]
+[169/177    0s] Csc Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.dll (+2 others)
+[           0s] Csc Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.dll (+2 others) [CacheWrite 59c5a307027aa9287ae5429f719cd32500000000000000000000000000000006]
+[170/177    0s] CopyFiles Library/ScriptAssemblies/UnityEditor.TestRunner.pdb
+[171/177    0s] CopyFiles Library/ScriptAssemblies/UnityEditor.TestRunner.dll
+[172/177    0s] MovedFromExtractor Library/Bee/artifacts/mvdfrm/UnityEditor.TestRunner.ref.dll_47F943A8BCEAAC06.mvfrm
+[173/177    0s] MovedFromExtractor-Combine Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.dll.mvfrm
+[174/177    0s] Csc Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.dll (+2 others)
+##### CommandLine
+"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/DotNetSdk/dotnet" exec "/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/DotNetSdk/sdk/8.0.318/Roslyn/bincore/csc.dll" /nostdlib /noconfig /shared "@Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.rsp" "@Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.rsp2"
+##### Contents of Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.rsp
+-target:library
+-out:"Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.dll"
+-refout:"Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.ref.dll"
+-define:UNITY_6000_5_5
+-define:UNITY_6000_5
+-define:UNITY_6000
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_2017_1_OR_NEWER
+-define:UNITY_2017_2_OR_NEWER
+-define:UNITY_2017_3_OR_NEWER
+-define:UNITY_2017_4_OR_NEWER
+-define:UNITY_2018_1_OR_NEWER
+-define:UNITY_2018_2_OR_NEWER
+-define:UNITY_2018_3_OR_NEWER
+-define:UNITY_2018_4_OR_NEWER
+-define:UNITY_2019_1_OR_NEWER
+-define:UNITY_2019_2_OR_NEWER
+-define:UNITY_2019_3_OR_NEWER
+-define:UNITY_2019_4_OR_NEWER
+-define:UNITY_2020_1_OR_NEWER
+-define:UNITY_2020_2_OR_NEWER
+-define:UNITY_2020_3_OR_NEWER
+-define:UNITY_2021_1_OR_NEWER
+-define:UNITY_2021_2_OR_NEWER
+-define:UNITY_2021_3_OR_NEWER
+-define:UNITY_2022_1_OR_NEWER
+-define:UNITY_2022_2_OR_NEWER
+-define:UNITY_2022_3_OR_NEWER
+-define:UNITY_2023_1_OR_NEWER
+-define:UNITY_2023_2_OR_NEWER
+-define:UNITY_2023_3_OR_NEWER
+-define:UNITY_6000_0_OR_NEWER
+-define:UNITY_6000_1_OR_NEWER
+-define:UNITY_6000_2_OR_NEWER
+-define:UNITY_6000_3_OR_NEWER
+-define:UNITY_6000_4_OR_NEWER
+-define:UNITY_6000_5_OR_NEWER
+-define:PLATFORM_ARCH_64
+-define:UNITY_64
+-define:UNITY_INCLUDE_TESTS
+-define:ENABLE_AUDIO
+-define:ENABLE_AUDIO_SCRIPTABLE_PIPELINE
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_TEXTURE_STREAMING
+-define:ENABLE_VIRTUALTEXTURING
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_VR
+-define:ENABLE_WEBCAM
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+-define:ENABLE_UNITY_CONSENT
+-define:ENABLE_UNITY_CLOUD_IDENTIFIERS
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_EDITOR_GAME_SERVICES
+-define:ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_HUB_LICENSE
+-define:ENABLE_WEBSOCKET_CLIENT
+-define:ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API
+-define:ENABLE_DIRECTOR_AUDIO
+-define:ENABLE_DIRECTOR_TEXTURE
+-define:ENABLE_MANAGED_JOBS
+-define:ENABLE_MANAGED_TRANSFORM_JOBS
+-define:ENABLE_MANAGED_ANIMATION_JOBS
+-define:ENABLE_MANAGED_AUDIO_JOBS
+-define:ENABLE_MANAGED_UNITYTLS
+-define:INCLUDE_DYNAMIC_GI
+-define:ENABLE_SCRIPTING_GC_WBARRIERS
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_MARSHALLING_TESTS
+-define:ENABLE_VIDEO
+-define:ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK
+-define:ENABLE_ACCELERATOR_CLIENT_DEBUGGING
+-define:TEXTCORE_1_0_OR_NEWER
+-define:EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED
+-define:PLATFORM_STANDALONE_LINUX
+-define:PLATFORM_STANDALONE
+-define:UNITY_STANDALONE_LINUX
+-define:UNITY_STANDALONE
+-define:UNITY_STANDALONE_LINUX_API
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_CLUSTER_SYNC
+-define:ENABLE_CLUSTERINPUT
+-define:ENABLE_SPATIALTRACKING
+-define:ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES
+-define:PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS
+-define:PLATFORM_USES_EXPLICIT_MEMORY_MANAGER_INITIALIZER
+-define:PLATFORM_SUPPORTS_DISPLAYINFO_API
+-define:ENABLE_MONO
+-define:NET_4_6
+-define:NET_UNITY_4_8
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_LINUX
+-define:ENABLE_UNITY_COLLECTIONS_CHECKS
+-define:ENABLE_BURST_AOT
+-define:UNITY_TEAM_LICENSE
+-define:ENABLE_CUSTOM_RENDER_TEXTURE
+-define:ENABLE_DIRECTOR
+-define:ENABLE_LOCALIZATION
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_TILEMAP
+-define:ENABLE_TIMELINE
+-define:ENABLE_LEGACY_INPUT_MANAGER
+-define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER
+-define:TEXTCORE_FONT_ENGINE_1_6_OR_NEWER
+-define:CSHARP_7_OR_LATER
+-define:CSHARP_7_3_OR_NEWER
+-define:UNITY_EDITOR_ONLY_COMPILATION
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Bcl.AsyncInterfaces.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Extensions.Logging.Abstractions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Collections.Immutable.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Diagnostics.DiagnosticSource.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.IO.Hashing.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Reflection.Metadata.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Runtime.CompilerServices.Unsafe.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Text.Encodings.Web.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Text.Json.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/Unity.Scripting.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.AIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.AccessibilityModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.AdaptivePerformanceModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.AssetComplianceModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.BuildProfileModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.ClothModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.ContentLoadModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreBusinessMetricsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.EditorToolbarModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.EmbreeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.GIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.GenericRemoteModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphToolkitModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphViewModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphicsStateCollectionSerializerModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.GridAndSnapModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.GridModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.HierarchyModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.LightingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.MathematicsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.MediaModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.MultiplayerModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.Physics2DModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.PhysicsCore2DModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.PhysicsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.PlayModeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.PresetsUIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.ProjectAuditorModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.PropertiesModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.QuickInstallModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.QuickSearchModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.SafeModeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneTemplateModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneViewModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderBuildSettingsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderCompilationModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderFoundryModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.SketchUpModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.SpriteMaskModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.SpriteShapeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.SubstanceModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.TerrainModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextCoreFontEngineModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextCoreTextEngineModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextRenderingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.TilemapModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.TreeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.U2DModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIAutomationModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIBuilderModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsSamplesModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIToolkitAuthoringModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.UmbraModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.VFXModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.VectorGraphicsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.VideoModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.XRModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AMDModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AdaptivePerformanceModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ContentLoadModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.GIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.GraphicsStateCollectionSerializerModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.HierarchyCoreModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.HierarchyModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.IdentifiersModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputForUIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.InsightsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.MarshallingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.MathematicsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.MultiplayerModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.NVIDIAModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsBackendPhysXModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsCore2DModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.PropertiesModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.RenderAs2DModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScriptingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.ShaderVariantAnalyticsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreFontEngineModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreTextEngineModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.U2DRuntimeModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsCommonModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConsentModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityCurlModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.VFXModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.VectorGraphicsModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.VirtualTexturingModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/Microsoft.Win32.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.AppContext.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Buffers.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Concurrent.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.NonGeneric.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Specialized.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Annotations.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.EventBasedAsync.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.TypeConverter.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Console.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Data.Common.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Contracts.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Debug.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.FileVersionInfo.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Process.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.StackTrace.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TextWriterTraceListener.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Tools.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TraceSource.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Drawing.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Dynamic.Runtime.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Calendars.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Extensions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Compression.ZipFile.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.DriveInfo.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Watcher.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.IsolatedStorage.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.MemoryMappedFiles.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Pipes.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.UnmanagedMemoryStream.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Expressions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Parallel.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Queryable.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Memory.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Http.Rtc.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NameResolution.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NetworkInformation.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Ping.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Requests.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Security.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Sockets.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebHeaderCollection.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.Client.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ObjectModel.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.DispatchProxy.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.ILGeneration.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.Lightweight.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Extensions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Reader.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.ResourceManager.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Writer.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.CompilerServices.VisualC.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Extensions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Handles.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.RuntimeInformation.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Numerics.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Formatters.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Json.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Xml.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Claims.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Algorithms.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Csp.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Encoding.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.X509Certificates.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Principal.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.SecureString.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Duplex.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Http.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.NetTcp.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Primitives.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Security.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.Extensions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.RegularExpressions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Overlapped.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Extensions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Parallel.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Thread.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.ThreadPool.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Timer.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ValueTuple.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.ReaderWriter.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XDocument.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.XDocument.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlDocument.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlSerializer.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/netstandard.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Microsoft.CSharp.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Core.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Data.DataSetExtensions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Data.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Drawing.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.FileSystem.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Net.Http.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.Vectors.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Runtime.Serialization.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Transactions.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.dll"
+-r:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll"
+-r:"Library/PackageCache/com.unity.ext.nunit@9054f8d1d690/net472/unity-custom/nunit.framework.dll"
+-r:"Library/PackageCache/com.unity.ext.nunit@9054f8d1d690/net472/unity-custom/nunit.framework.dll"
+-r:"Library/Bee/artifacts/2400b0aEDbg.dag/UnityEditor.TestRunner.ref.dll"
+-r:"Library/Bee/artifacts/2400b0aEDbg.dag/UnityEngine.TestRunner.ref.dll"
+-analyzer:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/analyzers/dotnet/roslyn4.0/cs/Microsoft.Extensions.Logging.Generators.dll"
+-analyzer:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/analyzers/dotnet/roslyn4.0/cs/System.Text.Json.SourceGeneration.dll"
+-analyzer:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers.Common/Unity.Analyzers.Common.dll"
+-analyzer:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers.LongLiving/Unity.Analyzers.LongLiving.dll"
+-analyzer:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
+-analyzer:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+-analyzer:"/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/HierarchyColorStudio/Editor/Core/AppearanceSettings.cs"
+"Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs"
+"Assets/HierarchyColorStudio/Editor/Core/ColorAssignment.cs"
+"Assets/HierarchyColorStudio/Editor/Core/ColorPreset.cs"
+"Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs"
+"Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStore.cs"
+"Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStudioBootstrap.cs"
+"Assets/HierarchyColorStudio/Editor/Core/HierarchyDecorations.cs"
+"Assets/HierarchyColorStudio/Editor/Core/HierarchySelectionCache.cs"
+"Assets/HierarchyColorStudio/Editor/Core/MaintenanceActions.cs"
+"Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/AppearanceSectionGUI.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/ColorPaletteWindow.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/HierarchyColorMenus.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/HierarchyColorSettingsProvider.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/HierarchyColorStudioWindow.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/HierarchyRowRenderer.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/PresetSectionGUI.cs"
+"Assets/HierarchyColorStudio/Editor/GUI/StudioStyles.cs"
+"Assets/HierarchyColorStudio/Editor/Persistence/ColorTransfer.cs"
+"Assets/HierarchyColorStudio/Editor/Persistence/HierarchyColorStoreFile.cs"
+"Assets/HierarchyColorStudio/Editor/Persistence/HierarchyColorStoreProvider.cs"
+"Assets/HierarchyColorStudio/Editor/Persistence/LastUsedColor.cs"
+"Assets/HierarchyColorStudio/Editor/Utilities/ColorHex.cs"
+"Assets/HierarchyColorStudio/Editor/Utilities/DemoColorsInstaller.cs"
+"Assets/HierarchyColorStudio/Editor/Utilities/DocumentationLocator.cs"
+"Assets/HierarchyColorStudio/Editor/Utilities/EditorCompat.cs"
+"Assets/HierarchyColorStudio/Editor/Utilities/StudioLog.cs"
+"Assets/HierarchyColorStudio/Editor/Utilities/UiStrings.cs"
+"Assets/HierarchyColorStudio/Editor/Utilities/UndoScope.cs"
+-langversion:9.0
+/deterministic
+/optimize-
+/debug:portable
+/nologo
+/RuntimeMetadataVersion:v4.0.30319
+/nowarn:0169
+/nowarn:0649
+/nowarn:0282
+/nowarn:1701
+/nowarn:1702
+/utf8output
+/preferreduilang:en-US
+/additionalfile:"Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.UnityAdditionalFile.txt"
+##### Custom Environment Variables
+DOTNET_HOST_PATH=/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/DotNetSdk/dotnet
+DOTNET_MULTILEVEL_LOOKUP=0
+##### ExitCode
+1
+##### Output
+Assets/HierarchyColorStudio/Editor/Core/ColorPreset.cs(21,44): error CS1061: 'Color32' does not contain a definition for 'white' and no accessible extension method 'white' accepting a first argument of type 'Color32' could be found (are you missing a using directive or an assembly reference?)
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(70,38): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchySelectionCache.cs(34,23): error CS0619: 'Selection.instanceIDs' is obsolete: 'Use entityIds instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(170,23): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStudioBootstrap.cs(28,13): error CS0619: 'EditorApplication.hierarchyWindowItemOnGUI' is obsolete: 'hierarchyWindowItemOnGUI is obsolete. Use hierarchyWindowItemByEntityIdOnGUI instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStudioBootstrap.cs(29,13): error CS0619: 'EditorApplication.hierarchyWindowItemOnGUI' is obsolete: 'hierarchyWindowItemOnGUI is obsolete. Use hierarchyWindowItemByEntityIdOnGUI instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(180,63): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(63,61): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(70,17): error CS0619: 'GlobalObjectId.GlobalObjectIdentifiersToInstanceIDsSlow(GlobalObjectId[], int[])' is obsolete: 'GlobalObjectIdentifiersToInstanceIDsSlow is obsolete. Use GlobalObjectIdentifiersToEntityIdsSlow instead.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(81,34): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(235,33): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(248,56): warning CS0618: 'PrefabStage.prefabAssetPath' is obsolete: 'prefabAssetPath has been deprecated. Use assetPath instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(250,61): warning CS0618: 'PrefabStage.prefabAssetPath' is obsolete: 'prefabAssetPath has been deprecated. Use assetPath instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(276,13): error CS0619: 'GlobalObjectId.GlobalObjectIdentifiersToInstanceIDsSlow(GlobalObjectId[], int[])' is obsolete: 'GlobalObjectIdentifiersToInstanceIDsSlow is obsolete. Use GlobalObjectIdentifiersToEntityIdsSlow instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(298,34): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(315,40): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(327,21): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(375,54): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/GUI/HierarchyRowRenderer.cs(235,26): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+*** Tundra build failed (4.60 seconds), 174 items updated, 177 evaluated
+## Script Compilation Error for: Csc Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.dll (+2 others)
+## CmdLine: "/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/DotNetSdk/dotnet" exec "/media/crynet/DATA/GAMEDEV/Unity/6000.5.5f1/Editor/Data/DotNetSdk/sdk/8.0.318/Roslyn/bincore/csc.dll" /nostdlib /noconfig /shared "@Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.rsp" "@Library/Bee/artifacts/2400b0aEDbg.dag/CryNet.HierarchyColorStudio.Editor.rsp2"
+## Output:
+Assets/HierarchyColorStudio/Editor/Core/ColorPreset.cs(21,44): error CS1061: 'Color32' does not contain a definition for 'white' and no accessible extension method 'white' accepting a first argument of type 'Color32' could be found (are you missing a using directive or an assembly reference?)
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(70,38): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchySelectionCache.cs(34,23): error CS0619: 'Selection.instanceIDs' is obsolete: 'Use entityIds instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(170,23): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStudioBootstrap.cs(28,13): error CS0619: 'EditorApplication.hierarchyWindowItemOnGUI' is obsolete: 'hierarchyWindowItemOnGUI is obsolete. Use hierarchyWindowItemByEntityIdOnGUI instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStudioBootstrap.cs(29,13): error CS0619: 'EditorApplication.hierarchyWindowItemOnGUI' is obsolete: 'hierarchyWindowItemOnGUI is obsolete. Use hierarchyWindowItemByEntityIdOnGUI instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(180,63): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(63,61): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(70,17): error CS0619: 'GlobalObjectId.GlobalObjectIdentifiersToInstanceIDsSlow(GlobalObjectId[], int[])' is obsolete: 'GlobalObjectIdentifiersToInstanceIDsSlow is obsolete. Use GlobalObjectIdentifiersToEntityIdsSlow instead.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(81,34): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(235,33): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(248,56): warning CS0618: 'PrefabStage.prefabAssetPath' is obsolete: 'prefabAssetPath has been deprecated. Use assetPath instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(250,61): warning CS0618: 'PrefabStage.prefabAssetPath' is obsolete: 'prefabAssetPath has been deprecated. Use assetPath instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(276,13): error CS0619: 'GlobalObjectId.GlobalObjectIdentifiersToInstanceIDsSlow(GlobalObjectId[], int[])' is obsolete: 'GlobalObjectIdentifiersToInstanceIDsSlow is obsolete. Use GlobalObjectIdentifiersToEntityIdsSlow instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(298,34): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(315,40): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(327,21): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(375,54): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/GUI/HierarchyRowRenderer.cs(235,26): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+
+Assets/HierarchyColorStudio/Editor/Core/ColorPreset.cs(21,44): error CS1061: 'Color32' does not contain a definition for 'white' and no accessible extension method 'white' accepting a first argument of type 'Color32' could be found (are you missing a using directive or an assembly reference?)
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(70,38): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchySelectionCache.cs(34,23): error CS0619: 'Selection.instanceIDs' is obsolete: 'Use entityIds instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(170,23): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStudioBootstrap.cs(28,13): error CS0619: 'EditorApplication.hierarchyWindowItemOnGUI' is obsolete: 'hierarchyWindowItemOnGUI is obsolete. Use hierarchyWindowItemByEntityIdOnGUI instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorStudioBootstrap.cs(29,13): error CS0619: 'EditorApplication.hierarchyWindowItemOnGUI' is obsolete: 'hierarchyWindowItemOnGUI is obsolete. Use hierarchyWindowItemByEntityIdOnGUI instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(180,63): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(63,61): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(70,17): error CS0619: 'GlobalObjectId.GlobalObjectIdentifiersToInstanceIDsSlow(GlobalObjectId[], int[])' is obsolete: 'GlobalObjectIdentifiersToInstanceIDsSlow is obsolete. Use GlobalObjectIdentifiersToEntityIdsSlow instead.'
+Assets/HierarchyColorStudio/Editor/Core/ObjectIdentity.cs(81,34): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(235,33): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(248,56): warning CS0618: 'PrefabStage.prefabAssetPath' is obsolete: 'prefabAssetPath has been deprecated. Use assetPath instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(250,61): warning CS0618: 'PrefabStage.prefabAssetPath' is obsolete: 'prefabAssetPath has been deprecated. Use assetPath instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(276,13): error CS0619: 'GlobalObjectId.GlobalObjectIdentifiersToInstanceIDsSlow(GlobalObjectId[], int[])' is obsolete: 'GlobalObjectIdentifiersToInstanceIDsSlow is obsolete. Use GlobalObjectIdentifiersToEntityIdsSlow instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(298,34): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(315,40): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/Core/AssignmentIndex.cs(327,21): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+Assets/HierarchyColorStudio/Editor/Core/HierarchyColorService.cs(375,54): error CS0619: 'Object.GetInstanceID()' is obsolete: 'GetInstanceID is deprecated. Use GetEntityId instead. This will be removed in a future version.'
+Assets/HierarchyColorStudio/Editor/GUI/HierarchyRowRenderer.cs(235,26): error CS0619: 'EditorUtility.InstanceIDToObject(int)' is obsolete: 'InstanceIDToObject(int) is obsolete. Use EditorUtility.EntityIdToObject instead.'
+AssetDatabase: script compilation time: 5.493723s
+Scripts have compiler errors.
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
