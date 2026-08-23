@@ -12,7 +12,7 @@ namespace CryNet.HierarchyColorStudio
     /// <remarks>
     /// Exported keys are <see cref="GlobalObjectId"/> strings, which stay valid as long as the scene or
     /// prefab asset they refer to is unchanged. That makes an export usable for sharing a color scheme
-    /// with teammates working on the same scenes, and for shipping the colors of the bundled demo scene.
+    /// with teammates working on the same scenes.
     /// Session-scoped keys are never exported because they are meaningless outside the session.
     /// </remarks>
     internal static class ColorTransfer
@@ -165,7 +165,7 @@ namespace CryNet.HierarchyColorStudio
                     if (store.FindPreset(imported.id) != null)
                         continue;
 
-                    store.Presets.Add(new ColorPreset(imported.name, presetColor));
+                    store.Presets.Add(new ColorPreset(imported.id, imported.name, presetColor));
                 }
             }
 

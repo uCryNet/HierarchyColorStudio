@@ -11,7 +11,6 @@ namespace CryNet.HierarchyColorStudio
     internal static class HierarchyColorSettingsProvider
     {
         private const float ContentMargin = 10f;
-        private const float PresetListMaxHeight = 220f;
 
         private static readonly PresetSectionGUI s_PresetSection = new PresetSectionGUI();
         private static readonly List<GameObject> s_Selection = new List<GameObject>(8);
@@ -60,12 +59,17 @@ namespace CryNet.HierarchyColorStudio
                         StudioStyles.DrawSeparator(10f, 8f);
 
                         EditorGUILayout.LabelField(UiStrings.SectionPresets, StudioStyles.SectionHeader);
-                        s_PresetSection.Draw(store, s_Selection, PresetListMaxHeight);
+                        s_PresetSection.Draw(store, s_Selection);
 
                         StudioStyles.DrawSeparator(10f, 8f);
 
                         EditorGUILayout.LabelField(UiStrings.SectionMaintenance, StudioStyles.SectionHeader);
                         DrawMaintenance();
+
+                        StudioStyles.DrawSeparator(10f, 8f);
+
+                        EditorGUILayout.LabelField(UiStrings.SectionAbout, StudioStyles.SectionHeader);
+                        AboutSectionGUI.Draw();
 
                         GUILayout.Space(ContentMargin);
                     }

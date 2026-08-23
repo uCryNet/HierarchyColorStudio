@@ -11,7 +11,6 @@ namespace CryNet.HierarchyColorStudio
     {
         private const float MinWindowWidth = 380f;
         private const float MinWindowHeight = 420f;
-        private const float PresetListMaxHeight = 260f;
         private const int MaxListedSelection = 12;
         private const float SwatchWidth = 26f;
 
@@ -23,6 +22,7 @@ namespace CryNet.HierarchyColorStudio
         private bool m_PresetsExpanded = true;
         private bool m_AppearanceExpanded = true;
         private bool m_MaintenanceExpanded;
+        private bool m_AboutExpanded;
 
         /// <summary>Opens or focuses the window.</summary>
         internal static void Open()
@@ -73,9 +73,10 @@ namespace CryNet.HierarchyColorStudio
 
                 DrawSection(UiStrings.SectionSelection, ref m_SelectionExpanded, () => DrawSelectionSection(store));
                 DrawSection(UiStrings.SectionPresets, ref m_PresetsExpanded,
-                    () => m_PresetSection.Draw(store, m_Selection, PresetListMaxHeight));
+                    () => m_PresetSection.Draw(store, m_Selection));
                 DrawSection(UiStrings.SectionAppearance, ref m_AppearanceExpanded, () => AppearanceSectionGUI.Draw(store));
                 DrawSection(UiStrings.SectionMaintenance, ref m_MaintenanceExpanded, () => DrawMaintenanceSection(store));
+                DrawSection(UiStrings.SectionAbout, ref m_AboutExpanded, AboutSectionGUI.Draw);
             }
 
             DrawFooter();

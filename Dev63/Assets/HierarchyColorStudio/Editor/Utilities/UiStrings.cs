@@ -9,6 +9,8 @@ namespace CryNet.HierarchyColorStudio
         internal const string ProductName = "Hierarchy Color Studio";
         internal const string Version = "1.0.0";
         internal const string Vendor = "CryNet";
+        internal const string AuthorWebsite = "https://crynet.dev/";
+        internal const string SupportEmail = "ucrynet@proton.me";
 
         internal const string MenuRootTools = "Tools/" + ProductName + "/";
         internal const string MenuRootGameObject = "GameObject/Hierarchy Color/";
@@ -28,13 +30,13 @@ namespace CryNet.HierarchyColorStudio
         internal const string MenuExport = "Export Colors…";
         internal const string MenuClearAll = "Clear All Colors";
         internal const string MenuDocumentation = "Documentation";
-        internal const string MenuApplySampleColors = "Samples/Apply Demo Colors";
 
         internal const string SectionSelection = "Selection";
         internal const string SectionPresets = "Presets";
         internal const string SectionAppearance = "Appearance";
         internal const string SectionMaintenance = "Assignments";
         internal const string SectionAdvanced = "Advanced";
+        internal const string SectionAbout = "About";
 
         internal const string LabelEnabled = "Enable Hierarchy Colors";
         internal const string LabelDecorations = "Display Mode";
@@ -58,6 +60,11 @@ namespace CryNet.HierarchyColorStudio
         internal const string LabelSearch = "Search";
         internal const string LabelApplyScopePopup = "Apply To";
         internal const string LabelCustomColor = "Custom Color";
+        internal const string LabelWebsite = "Website";
+        internal const string LabelSupport = "Support";
+
+        /// <summary>Formats the product line shown in the About section.</summary>
+        internal const string AboutProduct = ProductName + " " + Version + "  ·  " + Vendor;
 
         internal const string ButtonAddPreset = "Add Preset";
         internal const string ButtonApply = "Apply";
@@ -117,7 +124,7 @@ namespace CryNet.HierarchyColorStudio
 
         internal const string DialogBodyClearAll = "Remove every stored Hierarchy color from this project? This can be undone.";
         internal const string DialogBodyFactoryReset =
-            "Restore appearance settings and presets to their defaults and remove every stored color? This cannot be undone.";
+            "Restore appearance settings and presets to their defaults and remove every stored color? This can be undone.";
         internal const string DialogBodyImport = "Merge the imported colors into the current project, or replace them?";
 
         internal const string FilePanelExportTitle = "Export Hierarchy Colors";

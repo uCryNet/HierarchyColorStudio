@@ -1,6 +1,7 @@
 # Hierarchy Color Studio
 
 **Version 1.0.0** · Editor-only Unity extension by CryNet
+· [crynet.dev](https://crynet.dev/) · [ucrynet@proton.me](mailto:ucrynet@proton.me)
 
 Hierarchy Color Studio colors GameObjects in Unity's Hierarchy window so large scenes stay readable.
 Pick one or more objects, assign a color, and the Hierarchy shows it as a marker, a row background, a
@@ -24,6 +25,7 @@ into your scenes.
 - [Privacy and offline use](#privacy-and-offline-use)
 - [Known limitations](#known-limitations)
 - [Troubleshooting](#troubleshooting)
+- [Support](#support)
 - [Documentation index](#documentation-index)
 
 ---
@@ -47,8 +49,8 @@ Both boundaries are declared in one place, as `versionDefines` in
 `Editor/CryNet.HierarchyColorStudio.Editor.asmdef`. Nothing else in the plugin depends on the Unity
 version. See [UserGuide.md](UserGuide.md#unity-version-compatibility) for details.
 
-No render pipeline is required. The plugin works identically in Built-in, URP and HDRP projects, and the
-demo scene contains no materials or shaders so it cannot pull in a pipeline dependency.
+No render pipeline is required. The plugin works identically in Built-in, URP and HDRP projects. It ships
+no scenes, materials or shaders, so it cannot pull in a pipeline dependency.
 
 ---
 
@@ -75,8 +77,7 @@ To remove a color, right-click → **Hierarchy Color → Clear Color**.
 
 Everything is undoable with **Ctrl/Cmd + Z**, including an assignment made to a whole multi-selection.
 
-A five-minute walkthrough, including the demo scene, is in
-[GettingStarted.md](GettingStarted.md).
+A four-minute walkthrough is in [GettingStarted.md](GettingStarted.md).
 
 ---
 
@@ -105,7 +106,7 @@ A five-minute walkthrough, including the demo scene, is in
 ## Settings
 
 Both **Tools → Hierarchy Color Studio → Color Studio Window** and
-**Edit → Project Settings → Hierarchy Color Studio** show the same three sections.
+**Edit → Project Settings → Hierarchy Color Studio** show the same four sections.
 
 ### Appearance
 
@@ -136,6 +137,12 @@ view. **Apply** assigns a preset to the current selection.
 Counts of stored and currently visible colors, plus **Select Colored Objects**,
 **Remove Missing Entries**, **Export Colors**, **Import Colors**, **Clear All Colors** and
 **Restore Factory Defaults**.
+
+### About
+
+Version, author, website and support address, and a shortcut to this documentation. The website and the
+address are selectable text rather than links, because opening a browser or a mail client would mean the
+plugin starts an external process — see [Privacy and offline use](#privacy-and-offline-use).
 
 ---
 
@@ -225,11 +232,24 @@ Common issues and their causes are in [Troubleshooting.md](Troubleshooting.md).
 
 ---
 
+## Support
+
+Bug reports, questions and feature requests are welcome. Please include your Unity version and, if the
+Console logged anything, the message.
+
+| | |
+| --- | --- |
+| Website | <https://crynet.dev/> |
+| Email | <ucrynet@proton.me> |
+| Author | CryNet |
+
+---
+
 ## Documentation index
 
 | Document | Contents |
 | --- | --- |
-| [GettingStarted.md](GettingStarted.md) | Five-minute setup and first colors. |
+| [GettingStarted.md](GettingStarted.md) | Four-minute setup and first colors. |
 | [UserGuide.md](UserGuide.md) | Every feature, the architecture, and the design decisions. |
 | [Troubleshooting.md](Troubleshooting.md) | Symptoms, causes and fixes. |
 | [Changelog.md](Changelog.md) | Version history. |

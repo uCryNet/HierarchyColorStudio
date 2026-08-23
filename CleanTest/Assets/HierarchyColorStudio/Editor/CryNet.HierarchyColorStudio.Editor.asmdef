@@ -1,0 +1,27 @@
+{
+    "name": "CryNet.HierarchyColorStudio.Editor",
+    "rootNamespace": "CryNet.HierarchyColorStudio",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "6000.5",
+            "define": "HCS_ENTITY_ID_API"
+        },
+        {
+            "name": "Unity",
+            "expression": "6000.0",
+            "define": "HCS_PREFAB_STAGE_ASSET_PATH"
+        }
+    ],
+    "noEngineReferences": false
+}
