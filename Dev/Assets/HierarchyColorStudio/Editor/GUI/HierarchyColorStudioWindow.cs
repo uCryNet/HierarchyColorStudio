@@ -138,45 +138,80 @@ namespace CryNet.HierarchyColorStudio
 
             EditorGUILayout.LabelField(UiStrings.SelectionHeader(m_Selection.Count), StudioStyles.SectionHeader);
 
-            bool mixed = !TryGetSharedColor(out Color shared);
+            var style = GatherSelectionStyle(out StyleFields mixed);
             var scope = LastUsedColor.Scope;
+            var settings = store.Appearance;
 
-            using (new EditorGUILayout.HorizontalScope())
-            {
-                EditorGUI.BeginChangeCheck();
-                Color picked = EditorGUILayout.ColorField(
-                    new GUIContent(UiStrings.LabelColor), mixed ? (Color)LastUsedColor.Color : shared,
-                    true, false, false);
-                if (EditorGUI.EndChangeCheck())
-                    HierarchyColorService.Assign(m_Selection, picked, null, scope, true);
-            }
+            var result = StyleEditorGUI.Draw(style, mixed, settings, OnSelectionIconPicked);
+            if (result.Changed != StyleFields.None)
+                HierarchyColorService.ModifyStyle(m_Selection, result.Changed, result.Values, scope, result.Continuous);
 
+            var previewRect = EditorGUILayout.GetControlRect(false, EditorGUIUtility.singleLineHeight + 2f);
+            previewRect = EditorGUI.PrefixLabel(previewRect, new GUIContent(UiStrings.LabelPreview));
+            StylePreviewGUI.DrawRow(previewRect, style, settings, m_Selection[0].name);
+
+            EditorGUILayout.Space(2f);
             EditorGUI.BeginChangeCheck();
             var newScope = (ApplyScope)EditorGUILayout.EnumPopup(
                 new GUIContent(UiStrings.LabelApplyScopePopup, UiStrings.TooltipApplyScope), scope);
             if (EditorGUI.EndChangeCheck())
                 LastUsedColor.Scope = newScope;
 
-            if (mixed)
+            if (mixed != StyleFields.None)
                 EditorGUILayout.LabelField(UiStrings.HintMixedColors, StudioStyles.Hint);
 
             EditorGUILayout.Space(2f);
             using (new EditorGUILayout.HorizontalScope())
             {
-                using (new EditorGUI.DisabledScope(!HierarchyColorService.AnyHasColor(m_Selection)))
+                using (new EditorGUI.DisabledScope(!HierarchyColorService.AnyHasStyle(m_Selection)))
                 {
-                    if (GUILayout.Button(UiStrings.ButtonClear, GUILayout.Width(90f)))
+                    if (GUILayout.Button(new GUIContent(UiStrings.ButtonClear, UiStrings.TooltipClearStyle), GUILayout.Width(90f)))
                         HierarchyColorService.Clear(m_Selection, newScope);
                 }
 
                 if (GUILayout.Button(UiStrings.MenuApplyLastColor, GUILayout.Width(130f)))
-                    HierarchyColorService.Assign(m_Selection, LastUsedColor.Color, LastUsedColor.PresetId, newScope);
+                    HierarchyColorService.ApplyLastUsed(m_Selection, newScope);
+
+                using (new EditorGUI.DisabledScope(mixed != StyleFields.None || style.IsEmpty))
+                {
+                    if (GUILayout.Button(new GUIContent(UiStrings.ButtonSaveStyleAsPreset, UiStrings.TooltipSaveStyleAsPreset)))
+                        SaveSelectionStyleAsPreset(store, style);
+                }
 
                 GUILayout.FlexibleSpace();
             }
 
             EditorGUILayout.Space(4f);
             DrawSelectionList();
+        }
+
+        private HierarchyStyle GatherSelectionStyle(out StyleFields mixed)
+        {
+            mixed = StyleFields.None;
+            HierarchyColorService.TryGetStyle(m_Selection[0], out HierarchyStyle first);
+            for (int i = 1; i < m_Selection.Count; i++)
+            {
+                HierarchyColorService.TryGetStyle(m_Selection[i], out HierarchyStyle other);
+                mixed |= first.Differences(other);
+                if (mixed == StyleFields.All)
+                    break;
+            }
+
+            return first;
+        }
+
+        private static void OnSelectionIconPicked(string icon)
+        {
+            // The picker closes before the next frame, and the selection cannot change while it is open.
+            HierarchyColorService.ModifyStyle(Selection.gameObjects, StyleFields.Icon,
+                new HierarchyStyle { Icon = icon }, LastUsedColor.Scope);
+        }
+
+        private static void SaveSelectionStyleAsPreset(HierarchyColorStore store, HierarchyStyle style)
+        {
+            UndoScope.Record(store, UiStrings.UndoEditPresets);
+            store.Presets.Add(new ColorPreset(UiStrings.NewPresetName, style));
+            HierarchyColorService.NotifySettingsChanged();
         }
 
         private void DrawSelectionList()
@@ -189,8 +224,8 @@ namespace CryNet.HierarchyColorStudio
                 {
                     var swatchRect = GUILayoutUtility.GetRect(SwatchWidth, EditorGUIUtility.singleLineHeight - 2f,
                         GUILayout.Width(SwatchWidth));
-                    if (HierarchyColorService.TryGetColor(target, out Color assigned))
-                        StudioStyles.DrawSwatch(swatchRect, assigned);
+                    if (HierarchyColorService.TryGetStyle(target, out HierarchyStyle assigned))
+                        StylePreviewGUI.DrawSwatch(swatchRect, assigned);
                     else
                         StudioStyles.DrawOutline(swatchRect, StudioStyles.BorderColor, 1f);
 
@@ -257,29 +292,6 @@ namespace CryNet.HierarchyColorStudio
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(UiStrings.Vendor, EditorStyles.miniLabel);
             }
-        }
-
-        private bool TryGetSharedColor(out Color shared)
-        {
-            shared = Color.white;
-            bool first = true;
-            for (int i = 0; i < m_Selection.Count; i++)
-            {
-                if (!HierarchyColorService.TryGetColor(m_Selection[i], out Color current))
-                    return false;
-
-                if (first)
-                {
-                    shared = current;
-                    first = false;
-                }
-                else if (current != shared)
-                {
-                    return false;
-                }
-            }
-
-            return !first;
         }
     }
 }

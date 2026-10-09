@@ -18,11 +18,17 @@ namespace CryNet.HierarchyColorStudio
         /// <summary>Records the current state of the store as one undo step.</summary>
         /// <param name="store">Store to snapshot.</param>
         /// <param name="label">Undo step name shown in the Edit menu.</param>
+        /// <remarks>
+        /// A discrete step ends any continuous interaction in progress. Otherwise a drag that resumed within
+        /// the collapse timeout would fold this step into the drag's group, and undoing the drag would undo
+        /// this step with it.
+        /// </remarks>
         internal static void Record(HierarchyColorStore store, string label)
         {
             if (store == null)
                 return;
 
+            EndContinuous();
             try
             {
                 Undo.IncrementCurrentGroup();
@@ -73,22 +79,6 @@ namespace CryNet.HierarchyColorStudio
         internal static void EndContinuous()
         {
             s_ContinuousGroup = -1;
-        }
-
-        /// <summary>Asks the user to confirm an operation that would change a large number of objects.</summary>
-        /// <param name="affectedCount">Number of GameObjects that would change.</param>
-        /// <param name="threshold">Count above which confirmation is requested.</param>
-        /// <returns><c>true</c> when the operation may proceed.</returns>
-        internal static bool ConfirmLargeOperation(int affectedCount, int threshold)
-        {
-            if (affectedCount <= threshold)
-                return true;
-
-            return EditorUtility.DisplayDialog(
-                UiStrings.DialogTitleLargeOperation,
-                UiStrings.LargeOperationBody(affectedCount),
-                UiStrings.DialogContinue,
-                UiStrings.DialogCancel);
         }
     }
 }

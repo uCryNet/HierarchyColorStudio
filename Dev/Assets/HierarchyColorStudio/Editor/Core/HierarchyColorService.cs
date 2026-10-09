@@ -7,12 +7,23 @@ using UnityEngine.SceneManagement;
 namespace CryNet.HierarchyColorStudio
 {
     /// <summary>
-    /// Public entry point of Hierarchy Color Studio. Assigns, reads and clears Hierarchy colors,
+    /// Public entry point of Hierarchy Color Studio. Assigns, reads and clears Hierarchy colors and styles,
     /// with full support for Unity's Undo system and multi-selection.
     /// </summary>
+    /// <remarks>
+    /// Three kinds of write exist, and they differ only in what they keep:
+    /// <list type="bullet">
+    /// <item><description><see cref="ApplyStyle"/> and <see cref="ApplyPreset"/> replace the complete style, so
+    /// the target ends up looking exactly like the style or preset.</description></item>
+    /// <item><description><see cref="ModifyStyle"/> changes the selected elements and keeps the rest.</description></item>
+    /// <item><description><see cref="Assign(IReadOnlyList{GameObject}, Color, string, ApplyScope, bool)"/>
+    /// changes the main color and keeps every other element, as it did before styles existed.</description></item>
+    /// </list>
+    /// </remarks>
     public static class HierarchyColorService
     {
-        /// <summary>Number of GameObjects above which bulk operations ask for confirmation.</summary>
+        /// <summary>Not used: bulk operations never ask for confirmation. Kept so code written against 1.0 compiles.</summary>
+        [System.Obsolete("Bulk operations do not ask for confirmation. This constant has no effect.")]
         public const int LargeOperationThreshold = 250;
 
         private static readonly AssignmentIndex s_Index = new AssignmentIndex();
@@ -22,6 +33,8 @@ namespace CryNet.HierarchyColorStudio
         private static readonly List<string> s_KeyBuffer = new List<string>(64);
         private static readonly HashSet<RowId> s_DedupeBuffer = new HashSet<RowId>();
         private static readonly List<int> s_StaleBuffer = new List<int>(32);
+        private static readonly List<HierarchyStyle> s_StyleBuffer = new List<HierarchyStyle>(64);
+        private static readonly List<bool> s_ChangedBuffer = new List<bool>(64);
 
         /// <summary>Raised whenever assignments, presets or appearance settings change.</summary>
         public static event Action Changed;
@@ -124,13 +137,31 @@ namespace CryNet.HierarchyColorStudio
             return true;
         }
 
-        /// <summary>Reads the color of a Hierarchy row. Used by the Hierarchy renderer.</summary>
-        /// <param name="rowId">Identifier of the row's object.</param>
-        /// <param name="color">Receives the assigned color.</param>
-        /// <returns><c>true</c> when the row has an assigned color.</returns>
-        internal static bool TryGetRowColor(RowId rowId, out Color32 color)
+        /// <summary>Reads the complete style assigned to a GameObject.</summary>
+        /// <param name="target">GameObject to query.</param>
+        /// <param name="style">Receives the assigned style.</param>
+        /// <returns><c>true</c> when the GameObject has an assigned style.</returns>
+        public static bool TryGetStyle(GameObject target, out HierarchyStyle style)
         {
-            return s_Index.TryGetColor(rowId, out color);
+            style = default;
+            if (target == null)
+                return false;
+
+            s_Index.RebuildIfNeeded(Store);
+            if (!s_Index.TryGetStyle(RowId.Of(target), out RowStyle rowStyle))
+                return false;
+
+            style = rowStyle.Style;
+            return true;
+        }
+
+        /// <summary>Reads the prepared style of a Hierarchy row. Used by the Hierarchy renderer.</summary>
+        /// <param name="rowId">Identifier of the row's object.</param>
+        /// <param name="style">Receives the assigned style.</param>
+        /// <returns><c>true</c> when the row has an assigned style.</returns>
+        internal static bool TryGetRowStyle(RowId rowId, out RowStyle style)
+        {
+            return s_Index.TryGetStyle(rowId, out style);
         }
 
         /// <summary>Assigns a color to a single GameObject.</summary>
@@ -146,7 +177,10 @@ namespace CryNet.HierarchyColorStudio
             Assign(s_SingleBuffer, color, null, ApplyScope.SelectionOnly);
         }
 
-        /// <summary>Assigns a color to several GameObjects as a single undoable operation.</summary>
+        /// <summary>
+        /// Assigns a main color to several GameObjects as a single undoable operation. GameObjects that
+        /// already have a style keep its other elements — text color, marker and icon.
+        /// </summary>
         /// <param name="targets">GameObjects to color.</param>
         /// <param name="color">Color to assign.</param>
         /// <param name="presetId">Optional identifier of the preset the color came from.</param>
@@ -166,10 +200,7 @@ namespace CryNet.HierarchyColorStudio
                 return 0;
 
             var store = Store;
-            if (continuousEdit)
-                UndoScope.RecordContinuous(store, UiStrings.UndoAssignColor);
-            else
-                UndoScope.Record(store, UiStrings.UndoAssignColor);
+            RecordUndo(store, UiStrings.UndoAssignColor, continuousEdit);
 
             Color32 packed = color;
             string preset = presetId ?? string.Empty;
@@ -181,7 +212,165 @@ namespace CryNet.HierarchyColorStudio
             return s_KeyBuffer.Count;
         }
 
-        /// <summary>Removes the assigned color from several GameObjects as a single undoable operation.</summary>
+        /// <summary>
+        /// Replaces the complete style of several GameObjects as a single undoable operation. Every element
+        /// of <paramref name="style"/> is applied, including those at their defaults, so the targets end up
+        /// looking exactly like the style. A style that draws nothing removes the targets' styles.
+        /// </summary>
+        /// <param name="targets">GameObjects to style.</param>
+        /// <param name="style">Style to apply.</param>
+        /// <param name="presetId">Optional identifier of the preset the style came from.</param>
+        /// <param name="scope">Whether children are included.</param>
+        /// <param name="continuousEdit">
+        /// When <c>true</c> consecutive calls collapse into one undo step, for live dragging.
+        /// </param>
+        /// <returns>The number of GameObjects that were changed.</returns>
+        public static int ApplyStyle(IReadOnlyList<GameObject> targets, HierarchyStyle style, string presetId = null,
+            ApplyScope scope = ApplyScope.SelectionOnly, bool continuousEdit = false)
+        {
+            var normalized = style.Normalized();
+            if (normalized.IsEmpty)
+                return Clear(targets, scope);
+
+            var expanded = ExpandTargets(targets, scope);
+            if (expanded.Count == 0)
+                return 0;
+
+            if (!ObjectIdentity.TryBuildKeys(expanded, s_KeyBuffer, s_AcceptedBuffer))
+                return 0;
+
+            var store = Store;
+            RecordUndo(store, UiStrings.UndoApplyStyle, continuousEdit);
+
+            string preset = presetId ?? string.Empty;
+            for (int i = 0; i < s_KeyBuffer.Count; i++)
+                store.SetAssignmentStyle(s_KeyBuffer[i], normalized, preset);
+
+            if (normalized.HasColor)
+                LastUsedColor.Set(normalized.Color, preset);
+
+            NotifyDataChanged();
+            return s_KeyBuffer.Count;
+        }
+
+        /// <summary>
+        /// Applies a preset's complete style to several GameObjects as a single undoable operation and
+        /// records the preset, so <c>Apply Last Color</c> can apply it again.
+        /// </summary>
+        /// <param name="targets">GameObjects to style.</param>
+        /// <param name="preset">Preset to apply.</param>
+        /// <param name="scope">Whether children are included.</param>
+        /// <returns>The number of GameObjects that were changed.</returns>
+        public static int ApplyPreset(IReadOnlyList<GameObject> targets, ColorPreset preset,
+            ApplyScope scope = ApplyScope.SelectionOnly)
+        {
+            if (preset == null)
+                return 0;
+
+            var style = preset.Style;
+            int changed = ApplyStyle(targets, style, preset.Id, scope);
+
+            // ApplyStyle records the preset together with its color. A preset without a main color is
+            // recorded here, keeping the previous color for operations that need one.
+            if (changed > 0 && !style.HasColor)
+                LastUsedColor.Set(LastUsedColor.Color, preset.Id);
+            return changed;
+        }
+
+        /// <summary>
+        /// Changes selected elements of the style of several GameObjects as a single undoable operation,
+        /// keeping every other element. GameObjects without a style receive one.
+        /// </summary>
+        /// <remarks>
+        /// A background or marker needs a main color to be visible. When either is switched on for a
+        /// GameObject that has no main color, and the edit does not set the color itself, the most recently
+        /// used color is given to it. The edited styles no longer match a preset, so their preset id is
+        /// cleared, as it always was when a color was edited by hand.
+        /// </remarks>
+        /// <param name="targets">GameObjects to change.</param>
+        /// <param name="fields">Elements to change.</param>
+        /// <param name="values">Style supplying the new values of those elements.</param>
+        /// <param name="scope">Whether children are included.</param>
+        /// <param name="continuousEdit">
+        /// When <c>true</c> consecutive calls collapse into one undo step, for live dragging.
+        /// </param>
+        /// <returns>The number of GameObjects that were changed.</returns>
+        public static int ModifyStyle(IReadOnlyList<GameObject> targets, StyleFields fields, HierarchyStyle values,
+            ApplyScope scope = ApplyScope.SelectionOnly, bool continuousEdit = false)
+        {
+            if ((fields & StyleFields.All) == StyleFields.None)
+                return 0;
+
+            var expanded = ExpandTargets(targets, scope);
+            if (expanded.Count == 0)
+                return 0;
+
+            if (!ObjectIdentity.TryBuildKeys(expanded, s_KeyBuffer, s_AcceptedBuffer))
+                return 0;
+
+            var store = Store;
+            Color32 fallbackColor = LastUsedColor.Color;
+            int changes = 0;
+            s_StyleBuffer.Clear();
+            s_ChangedBuffer.Clear();
+            for (int i = 0; i < s_KeyBuffer.Count; i++)
+            {
+                int index = store.IndexOfKey(s_KeyBuffer[i]);
+                var current = index >= 0 ? store.Assignments[index].Style : default;
+                var next = current.With(values, fields).Normalized();
+
+                bool needsColor = !next.HasColor && (fields & StyleFields.Color) == 0 &&
+                                  (next.Background == StyleOverride.On || next.Marker == StyleOverride.On);
+                if (needsColor)
+                {
+                    next.HasColor = true;
+                    next.Color = fallbackColor;
+                }
+
+                bool changed = index >= 0 ? next != current : !next.IsEmpty;
+                if (changed)
+                    changes++;
+                s_StyleBuffer.Add(next);
+                s_ChangedBuffer.Add(changed);
+            }
+
+            // An edit that changes nothing registers no undo step, like every other operation.
+            if (changes == 0)
+                return 0;
+
+            RecordUndo(store, UiStrings.UndoEditStyle, continuousEdit);
+            for (int i = 0; i < s_KeyBuffer.Count; i++)
+            {
+                if (s_ChangedBuffer[i])
+                    store.SetAssignmentStyle(s_KeyBuffer[i], s_StyleBuffer[i], string.Empty);
+            }
+
+            if ((fields & StyleFields.Color) != 0 && values.HasColor)
+                LastUsedColor.Set(values.Color, string.Empty);
+
+            NotifyDataChanged();
+            return changes;
+        }
+
+        /// <summary>
+        /// Applies the most recently used preset, or the most recently used color when it came from no
+        /// preset. Backs the <c>Apply Last Color</c> command.
+        /// </summary>
+        /// <param name="targets">GameObjects to style.</param>
+        /// <param name="scope">Whether children are included.</param>
+        /// <returns>The number of GameObjects that were changed.</returns>
+        internal static int ApplyLastUsed(IReadOnlyList<GameObject> targets, ApplyScope scope)
+        {
+            var preset = Store.FindPreset(LastUsedColor.PresetId);
+            return preset != null
+                ? ApplyPreset(targets, preset, scope)
+                : Assign(targets, LastUsedColor.Color, null, scope);
+        }
+
+        /// <summary>
+        /// Removes the style from several GameObjects as a single undoable operation. Only the styling is
+        /// removed; the GameObjects themselves are never touched.
+        /// </summary>
         /// <param name="targets">GameObjects to clear.</param>
         /// <param name="scope">Whether children are included.</param>
         /// <returns>The number of GameObjects that were changed.</returns>
@@ -217,7 +406,7 @@ namespace CryNet.HierarchyColorStudio
             return removed;
         }
 
-        /// <summary><c>true</c> when at least one of the supplied GameObjects has an assigned color.</summary>
+        /// <summary><c>true</c> when at least one of the supplied GameObjects has an assigned main color.</summary>
         /// <param name="targets">GameObjects to test.</param>
         public static bool AnyHasColor(IReadOnlyList<GameObject> targets)
         {
@@ -228,6 +417,23 @@ namespace CryNet.HierarchyColorStudio
             for (int i = 0; i < targets.Count; i++)
             {
                 if (targets[i] != null && s_Index.TryGetColor(RowId.Of(targets[i]), out _))
+                    return true;
+            }
+
+            return false;
+        }
+
+        /// <summary><c>true</c> when at least one of the supplied GameObjects has any style — a color, a text color or an icon.</summary>
+        /// <param name="targets">GameObjects to test.</param>
+        public static bool AnyHasStyle(IReadOnlyList<GameObject> targets)
+        {
+            if (targets == null)
+                return false;
+
+            s_Index.RebuildIfNeeded(Store);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] != null && s_Index.TryGetStyle(RowId.Of(targets[i]), out _))
                     return true;
             }
 
@@ -384,6 +590,14 @@ namespace CryNet.HierarchyColorStudio
                 s_Index.InvalidateData();
                 HierarchyColorStoreProvider.MarkChanged();
             }
+        }
+
+        private static void RecordUndo(HierarchyColorStore store, string label, bool continuousEdit)
+        {
+            if (continuousEdit)
+                UndoScope.RecordContinuous(store, label);
+            else
+                UndoScope.Record(store, label);
         }
 
         private static List<GameObject> ExpandTargets(IReadOnlyList<GameObject> targets, ApplyScope scope)

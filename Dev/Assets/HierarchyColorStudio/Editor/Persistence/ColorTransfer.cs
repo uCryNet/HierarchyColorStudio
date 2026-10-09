@@ -7,33 +7,52 @@ using UnityEngine;
 namespace CryNet.HierarchyColorStudio
 {
     /// <summary>
-    /// Human-readable JSON export and import for color assignments and presets.
+    /// Human-readable JSON export and import for style assignments and presets.
     /// </summary>
     /// <remarks>
+    /// <para>
     /// Exported keys are <see cref="GlobalObjectId"/> strings, which stay valid as long as the scene or
     /// prefab asset they refer to is unchanged. That makes an export usable for sharing a color scheme
     /// with teammates working on the same scenes.
     /// Session-scoped keys are never exported because they are meaningless outside the session.
+    /// </para>
+    /// <para>
+    /// Document version 2 adds the style elements to every entry and preset as named, optional fields.
+    /// A missing field means the element's default, so a version 1 document imports with its exact
+    /// meaning, and version 1.0 of the plugin can still read the colors of a version 2 document, ignoring
+    /// the fields it does not know.
+    /// </para>
     /// </remarks>
     internal static class ColorTransfer
     {
-        private const int DocumentVersion = 1;
+        private const int DocumentVersion = 2;
         private const string DocumentKind = "CryNet.HierarchyColorStudio.ColorSet";
 
+        /// <summary>Style elements shared by entries and presets. Enums are written by name for readability.</summary>
         [Serializable]
-        private sealed class TransferEntry
+        private class TransferStyle
+        {
+            public string color;
+            public string background;
+            public string text;
+            public string textColor;
+            public string marker;
+            public string markerShape;
+            public string icon;
+        }
+
+        [Serializable]
+        private sealed class TransferEntry : TransferStyle
         {
             public string key;
-            public string color;
             public string preset;
         }
 
         [Serializable]
-        private sealed class TransferPreset
+        private sealed class TransferPreset : TransferStyle
         {
             public string id;
             public string name;
-            public string color;
         }
 
         [Serializable]
@@ -70,12 +89,10 @@ namespace CryNet.HierarchyColorStudio
                 var preset = presets[i];
                 if (preset == null)
                     continue;
-                document.presets.Add(new TransferPreset
-                {
-                    id = preset.Id,
-                    name = preset.Name,
-                    color = ColorHex.ToHex(preset.Color, true)
-                });
+
+                var transferPreset = new TransferPreset { id = preset.Id, name = preset.Name };
+                WriteStyle(preset.Style, transferPreset);
+                document.presets.Add(transferPreset);
             }
 
             var assignments = store.Assignments;
@@ -84,12 +101,10 @@ namespace CryNet.HierarchyColorStudio
                 var assignment = assignments[i];
                 if (assignment == null || !assignment.IsValid() || assignment.IsSessionScoped)
                     continue;
-                document.assignments.Add(new TransferEntry
-                {
-                    key = assignment.Key,
-                    color = ColorHex.ToHex(assignment.Color, true),
-                    preset = assignment.PresetId
-                });
+
+                var entry = new TransferEntry { key = assignment.Key, preset = assignment.PresetId };
+                WriteStyle(assignment.Style, entry);
+                document.assignments.Add(entry);
             }
 
             try
@@ -160,12 +175,12 @@ namespace CryNet.HierarchyColorStudio
                 for (int i = 0; i < document.presets.Count; i++)
                 {
                     var imported = document.presets[i];
-                    if (imported == null || !ColorHex.TryParse(imported.color, out Color32 presetColor))
+                    if (imported == null || !TryReadStyle(imported, out HierarchyStyle presetStyle))
                         continue;
                     if (store.FindPreset(imported.id) != null)
                         continue;
 
-                    store.Presets.Add(new ColorPreset(imported.id, imported.name, presetColor));
+                    store.Presets.Add(new ColorPreset(imported.id, imported.name, presetStyle));
                 }
             }
 
@@ -177,12 +192,12 @@ namespace CryNet.HierarchyColorStudio
                     var imported = document.assignments[i];
                     if (imported == null || string.IsNullOrEmpty(imported.key))
                         continue;
-                    if (!ColorHex.TryParse(imported.color, out Color32 color))
+                    if (!TryReadStyle(imported, out HierarchyStyle style))
                         continue;
                     if (imported.key.StartsWith(ColorAssignment.SessionKeyPrefix, StringComparison.Ordinal))
                         continue;
 
-                    store.SetAssignment(imported.key, color, imported.preset);
+                    store.SetAssignmentStyle(imported.key, style, imported.preset);
                     applied++;
                 }
             }
@@ -191,6 +206,59 @@ namespace CryNet.HierarchyColorStudio
             HierarchyColorService.NotifyDataChanged();
             StudioLog.Info("Imported " + applied + " color(s) from " + path);
             return applied;
+        }
+
+        private static void WriteStyle(HierarchyStyle style, TransferStyle target)
+        {
+            var normalized = style.Normalized();
+            target.color = normalized.HasColor ? ColorHex.ToHex(normalized.Color, true) : string.Empty;
+            target.background = normalized.Background.ToString();
+            target.text = normalized.Text.ToString();
+            target.textColor = normalized.Text == StyleOverride.On ? ColorHex.ToHex(normalized.TextColor, true) : string.Empty;
+            target.marker = normalized.Marker.ToString();
+            target.markerShape = normalized.Marker == StyleOverride.On ? normalized.MarkerShape.ToString() : string.Empty;
+            target.icon = normalized.Icon ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Reads a style. A color that is present but unparsable rejects the record, as version 1 did; an
+        /// absent color is valid when another element draws something. Unknown element values fall back to
+        /// their defaults rather than rejecting the record.
+        /// </summary>
+        private static bool TryReadStyle(TransferStyle source, out HierarchyStyle style)
+        {
+            style = default;
+            if (!string.IsNullOrEmpty(source.color))
+            {
+                if (!ColorHex.TryParse(source.color, out style.Color))
+                    return false;
+                style.HasColor = true;
+            }
+
+            style.Background = ParseOverride(source.background);
+            style.Text = ParseOverride(source.text);
+            if (style.Text == StyleOverride.On && !ColorHex.TryParse(source.textColor, out style.TextColor))
+                style.Text = StyleOverride.Default;
+
+            style.Marker = ParseOverride(source.marker);
+            if (style.Marker == StyleOverride.On)
+            {
+                if (!Enum.TryParse(source.markerShape, true, out style.MarkerShape) ||
+                    !HierarchyStyle.IsKnownShape(style.MarkerShape))
+                    style.Marker = StyleOverride.Default;
+            }
+
+            style.Icon = BuiltinIcons.NormalizeName(source.icon);
+            style = style.Normalized();
+            return !style.IsEmpty;
+        }
+
+        private static StyleOverride ParseOverride(string value)
+        {
+            return !string.IsNullOrEmpty(value) && Enum.TryParse(value, true, out StyleOverride parsed) &&
+                   parsed >= StyleOverride.Default && parsed <= StyleOverride.On
+                ? parsed
+                : StyleOverride.Default;
         }
     }
 }

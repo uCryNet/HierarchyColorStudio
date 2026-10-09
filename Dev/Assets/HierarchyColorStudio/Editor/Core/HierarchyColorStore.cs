@@ -5,14 +5,23 @@ namespace CryNet.HierarchyColorStudio
 {
     /// <summary>
     /// Serialized container for every piece of Hierarchy Color Studio data: appearance settings,
-    /// color presets and per-GameObject color assignments.
+    /// presets and per-GameObject style assignments.
     /// The instance is never part of the AssetDatabase; it is written to the project's
     /// <c>ProjectSettings</c> folder by <see cref="HierarchyColorStoreFile"/>.
     /// </summary>
+    /// <remarks>
+    /// Schema history:
+    /// <list type="bullet">
+    /// <item><description>1 — version 1.0: a color per object, color-only presets.</description></item>
+    /// <item><description>2 — version 1.1: complete styles (background, text color, marker, icon) for
+    /// assignments and presets; Hierarchy modes; folder and prefab icons. Every added field defaults to
+    /// schema 1 behaviour, and <see cref="Sanitize"/> upgrades schema 1 data explicitly.</description></item>
+    /// </list>
+    /// </remarks>
     public sealed class HierarchyColorStore : ScriptableObject
     {
         /// <summary>Schema version of the serialized file.</summary>
-        public const int CurrentVersion = 1;
+        public const int CurrentVersion = 2;
 
         [SerializeField] private int m_Version = CurrentVersion;
         [SerializeField] private AppearanceSettings m_Appearance = new AppearanceSettings();
@@ -24,6 +33,12 @@ namespace CryNet.HierarchyColorStudio
 
         /// <summary>Schema version of the loaded data.</summary>
         public int Version => m_Version;
+
+        /// <summary>
+        /// Schema version the data was upgraded from by the last <see cref="Sanitize"/>, or <c>0</c> when no
+        /// upgrade happened. Not serialized.
+        /// </summary>
+        internal int UpgradedFromVersion { get; private set; }
 
         /// <summary>Appearance and behaviour options.</summary>
         public AppearanceSettings Appearance => m_Appearance ?? (m_Appearance = new AppearanceSettings());
@@ -51,7 +66,10 @@ namespace CryNet.HierarchyColorStudio
             return m_KeyLookup.TryGetValue(key, out int index) && index < Assignments.Count ? index : -1;
         }
 
-        /// <summary>Adds or updates the assignment for an identity key.</summary>
+        /// <summary>
+        /// Adds or updates the assignment for an identity key. An existing assignment keeps its other style
+        /// elements; only its main color and preset change.
+        /// </summary>
         /// <param name="key">Identity key of the target GameObject.</param>
         /// <param name="color">Color to store.</param>
         /// <param name="presetId">Optional source preset identifier.</param>
@@ -68,9 +86,43 @@ namespace CryNet.HierarchyColorStudio
                 return;
             }
 
-            Assignments.Add(new ColorAssignment(key, color, presetId));
+            AddAssignment(new ColorAssignment(key, color, presetId));
+        }
+
+        /// <summary>
+        /// Adds or replaces the complete style of an identity key. A style that draws nothing removes the
+        /// assignment, because such a record would only be dropped on the next load.
+        /// </summary>
+        /// <param name="key">Identity key of the target GameObject.</param>
+        /// <param name="style">Style to store.</param>
+        /// <param name="presetId">Optional source preset identifier.</param>
+        public void SetAssignmentStyle(string key, HierarchyStyle style, string presetId)
+        {
+            if (string.IsNullOrEmpty(key))
+                return;
+
+            if (style.IsEmpty)
+            {
+                RemoveAssignment(key);
+                return;
+            }
+
+            int index = IndexOfKey(key);
+            if (index >= 0)
+            {
+                Assignments[index].Style = style;
+                Assignments[index].PresetId = presetId;
+                return;
+            }
+
+            AddAssignment(new ColorAssignment(key, style, presetId));
+        }
+
+        private void AddAssignment(ColorAssignment assignment)
+        {
+            Assignments.Add(assignment);
             if (m_LookupValid)
-                m_KeyLookup[key] = Assignments.Count - 1;
+                m_KeyLookup[assignment.Key] = Assignments.Count - 1;
         }
 
         /// <summary>Removes the assignment for an identity key.</summary>
@@ -134,6 +186,23 @@ namespace CryNet.HierarchyColorStudio
         public int Sanitize()
         {
             int repairs = 0;
+            UpgradedFromVersion = 0;
+
+            if (m_Version > CurrentVersion)
+            {
+                // Written by a newer version. Everything this version understands is kept; fields it does
+                // not know are dropped by Unity when the file is next saved.
+                m_Version = CurrentVersion;
+                repairs++;
+            }
+            else if (m_Version < CurrentVersion)
+            {
+                if (m_Version <= 0)
+                    repairs++;
+
+                UpgradedFromVersion = Mathf.Max(1, m_Version);
+                UpgradeFromVersion1();
+            }
 
             if (m_Appearance == null)
             {
@@ -173,22 +242,55 @@ namespace CryNet.HierarchyColorStudio
                 for (int i = m_Assignments.Count - 1; i >= 0; i--)
                 {
                     var assignment = m_Assignments[i];
-                    if (assignment == null || !assignment.IsValid() || !seen.Add(assignment.Key))
+                    if (assignment == null)
                     {
                         m_Assignments.RemoveAt(i);
+                        repairs++;
+                        continue;
+                    }
+
+                    bool repaired = assignment.RepairStyle();
+                    if (!assignment.IsValid() || !seen.Add(assignment.Key))
+                    {
+                        m_Assignments.RemoveAt(i);
+                        repairs++;
+                    }
+                    else if (repaired)
+                    {
                         repairs++;
                     }
                 }
             }
 
-            if (m_Version <= 0 || m_Version > CurrentVersion)
-            {
-                m_Version = CurrentVersion;
-                repairs++;
-            }
-
             InvalidateLookup();
             return repairs;
+        }
+
+        /// <summary>
+        /// Upgrades schema 1 data. Schema 1 had no style elements, no Hierarchy modes and no folder or prefab
+        /// icons; each of them is set explicitly to the value that reproduces schema 1, so an upgraded project
+        /// looks exactly as it did and does not depend on how Unity initialized the absent fields.
+        /// The rules schema 1 applied on load — a preset color is mandatory, an assignment without a usable
+        /// color is dropped — are applied here too, before the schema 2 rules take over.
+        /// </summary>
+        private void UpgradeFromVersion1()
+        {
+            if (m_Appearance != null)
+                m_Appearance.ResetSettingsAddedInVersion2();
+
+            if (m_Presets != null)
+            {
+                for (int i = 0; i < m_Presets.Count; i++)
+                    m_Presets[i]?.ResetElementsAddedInVersion2();
+            }
+
+            if (m_Assignments != null)
+            {
+                for (int i = 0; i < m_Assignments.Count; i++)
+                    m_Assignments[i]?.ResetElementsAddedInVersion2();
+            }
+
+            m_Version = CurrentVersion;
         }
 
         /// <summary>Removes every assignment whose key is only valid inside a single Editor session.</summary>

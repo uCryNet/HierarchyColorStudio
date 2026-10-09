@@ -7,10 +7,16 @@ namespace CryNet.HierarchyColorStudio
     /// Compact color palette shown as a dropdown next to the mouse pointer.
     /// </summary>
     /// <remarks>
+    /// <para>
     /// The palette is self-contained on purpose. A dropdown closes as soon as it loses focus, so opening
-    /// Unity's modal color picker from here would discard the user's choice. Custom colors are therefore
-    /// entered with channel sliders and a validated hexadecimal field, both of which keep keyboard focus
-    /// inside the dropdown.
+    /// Unity's modal color picker — or any other popup — from here would discard the user's choice. Custom
+    /// colors are therefore entered with channel sliders and a validated hexadecimal field, and icons are
+    /// chosen from a grid drawn inside the dropdown.
+    /// </para>
+    /// <para>
+    /// Each section changes exactly one thing: a preset swatch applies the preset's complete style, an icon
+    /// changes only the icon, and a custom color changes only the main color.
+    /// </para>
     /// </remarks>
     internal sealed class ColorPaletteWindow : EditorWindow
     {
@@ -27,7 +33,9 @@ namespace CryNet.HierarchyColorStudio
         private string m_HexInput = string.Empty;
         private bool m_HexValid = true;
         private bool m_CustomExpanded;
+        private bool m_IconsExpanded;
         private Vector2 m_ScrollPosition;
+        private readonly GUIContent m_SwatchContent = new GUIContent();
 
         /// <summary>Opens the palette as a dropdown at a screen position.</summary>
         /// <param name="screenPosition">Anchor position in screen space.</param>
@@ -52,7 +60,7 @@ namespace CryNet.HierarchyColorStudio
             float height = PaddingVertical * 2f
                            + EditorGUIUtility.singleLineHeight * 2f + 8f
                            + rows * (SwatchSize + SwatchSpacing)
-                           + EditorGUIUtility.singleLineHeight * 3f + 24f;
+                           + EditorGUIUtility.singleLineHeight * 4f + 26f;
             return new Vector2(WindowWidth, Mathf.Min(height, MaxWindowHeight));
         }
 
@@ -83,6 +91,7 @@ namespace CryNet.HierarchyColorStudio
                 {
                     m_ScrollPosition = scroll.scrollPosition;
                     DrawPresetGrid(store);
+                    DrawIconSection();
                     DrawCustomSection(store);
                 }
 
@@ -162,12 +171,67 @@ namespace CryNet.HierarchyColorStudio
 
         private void DrawSwatchButton(Rect rect, ColorPreset preset)
         {
-            StudioStyles.DrawSwatch(rect, preset.Color);
-            if (UnityEngine.GUI.Button(rect, new GUIContent(string.Empty,
-                    preset.Name + "  " + ColorHex.ToDisplayHex(preset.Color)), GUIStyle.none))
+            var style = preset.Style;
+            StylePreviewGUI.DrawSwatch(rect, style);
+
+            m_SwatchContent.tooltip = style.HasColor ? preset.Name + "  " + ColorHex.ToDisplayHex(style.Color) : preset.Name;
+            if (UnityEngine.GUI.Button(rect, m_SwatchContent, GUIStyle.none))
             {
-                ApplyColor(preset.Color, preset.Id);
+                HierarchyColorService.ApplyPreset(m_Targets, preset, LastUsedColor.Scope);
+                Close();
+                GUIUtility.ExitGUI();
             }
+        }
+
+        private void DrawIconSection()
+        {
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.Space(PaddingHorizontal);
+                m_IconsExpanded = EditorGUILayout.Foldout(m_IconsExpanded, UiStrings.LabelStyleIcon, true);
+            }
+
+            if (!m_IconsExpanded)
+                return;
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.Space(PaddingHorizontal + 12f);
+                using (new EditorGUILayout.VerticalScope())
+                {
+                    float width = WindowWidth - PaddingHorizontal * 2f - 12f - 16f;
+                    if (IconPickerGUI.DrawGrid(SharedTargetIcon(), string.Empty, width, false, out string picked))
+                    {
+                        HierarchyColorService.ModifyStyle(m_Targets, StyleFields.Icon, new HierarchyStyle { Icon = picked },
+                            LastUsedColor.Scope);
+                        Close();
+                        GUIUtility.ExitGUI();
+                    }
+                }
+            }
+
+            GUILayout.Space(4f);
+        }
+
+        /// <summary>The icon every target shares, or an empty string when they differ or have none.</summary>
+        private string SharedTargetIcon()
+        {
+            string shared = null;
+            for (int i = 0; i < m_Targets.Length; i++)
+            {
+                if (m_Targets[i] == null)
+                    continue;
+
+                string icon = HierarchyColorService.TryGetStyle(m_Targets[i], out HierarchyStyle style)
+                    ? style.Icon ?? string.Empty
+                    : string.Empty;
+                if (shared == null)
+                    shared = icon;
+                else if (shared != icon)
+                    return string.Empty;
+            }
+
+            return shared ?? string.Empty;
         }
 
         private void DrawCustomSection(HierarchyColorStore store)
@@ -251,9 +315,9 @@ namespace CryNet.HierarchyColorStudio
             using (new EditorGUILayout.HorizontalScope())
             {
                 GUILayout.Space(PaddingHorizontal);
-                using (new EditorGUI.DisabledScope(!HierarchyColorService.AnyHasColor(m_Targets)))
+                using (new EditorGUI.DisabledScope(!HierarchyColorService.AnyHasStyle(m_Targets)))
                 {
-                    if (GUILayout.Button(UiStrings.ButtonClear, GUILayout.Width(70f)))
+                    if (GUILayout.Button(new GUIContent(UiStrings.ButtonClear, UiStrings.TooltipClearStyle), GUILayout.Width(70f)))
                     {
                         HierarchyColorService.Clear(m_Targets, LastUsedColor.Scope);
                         Close();

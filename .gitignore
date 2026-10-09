@@ -1,14 +1,25 @@
 # Unity generated — regenerated on open, never committed.
 # Each of the three projects (Dev, Dev63, CleanTest) gets the same treatment.
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
-[Mm]emoryCaptures/
-[Rr]ecordings/
+# Anchored to the project roots: an unanchored Build/ would also hide Assets/_Development/Build.
+/*/[Ll]ibrary/
+/*/[Tt]emp/
+/*/[Oo]bj/
+/*/[Bb]uild/
+/*/[Bb]uilds/
+/*/[Ll]ogs/
+/*/[Uu]ser[Ss]ettings/
+/*/[Mm]emoryCaptures/
+/*/[Rr]ecordings/
+
+# Copies of the plugin in the verification projects. Dev63 is synced from Dev and CleanTest receives the
+# built package, both on demand (see README.md); only Dev holds the source.
+/Dev63/Assets/HierarchyColorStudio/
+/Dev63/Assets/HierarchyColorStudio.meta
+/CleanTest/Assets/HierarchyColorStudio/
+/CleanTest/Assets/HierarchyColorStudio.meta
+
+# The plugin's own settings file in the projects above: local test state, written on first change.
+/*/ProjectSettings/HierarchyColorStudio.asset
 
 # Build output. The logs in here record absolute paths and the build machine's user name, and the
 # packages are reproducible from source — see README.md.

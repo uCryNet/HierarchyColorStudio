@@ -1,6 +1,6 @@
 # Getting Started
 
-Four minutes from import to a color-coded Hierarchy.
+Five minutes from import to a color-coded Hierarchy.
 
 ---
 
@@ -28,6 +28,9 @@ the default display mode.
 Press **Ctrl/Cmd + Z**. The color is removed — every change goes through Unity's own Undo system.
 Press **Ctrl/Cmd + Shift + Z** to bring it back.
 
+Keyboard alternative: select objects and press **Alt + Shift + C** to open the palette, or
+**Alt + Shift + Backspace** to clear their style. Clearing never deletes a GameObject.
+
 ---
 
 ## 3. Color a whole group (1 minute)
@@ -53,7 +56,8 @@ Under **Appearance → Display Mode**, tick any combination of:
 
 - **Marker** — a colored dot, bar or square on the row.
 - **Row Tint** — a translucent wash across the row.
-- **Label Color** — the GameObject's name drawn in the assigned color.
+- **Label Color** — the GameObject's name drawn in the assigned color, or in one color of your choice
+  for all objects: set **Text Color** to *Custom*.
 
 Good starting points:
 
@@ -63,9 +67,28 @@ Good starting points:
 | Strongest signal | Row Tint + Label Color | Raise *Background Opacity* to about 0.35. |
 | Minimal | Marker only, shape *Bar* | A thin colored strip at the row's edge. |
 
+**Hierarchy Mode** at the top of Appearance changes the whole window: *Zebra* shades every second row,
+*Minimal* hides Unity's generic GameObject icon so meaningful icons stand out. Both are off by default.
+
 ---
 
-## 5. Make the presets yours (1 minute)
+## 5. Give an object a complete style (1 minute)
+
+Select an object and open the Color Studio window. The **Selection** section has one row per element:
+
+- **Color** — the main color, used by the background and the marker.
+- **Background** — follow the Display Mode, none, or always show.
+- **Text** — follow the Display Mode, keep Unity's color, or a custom text color.
+- **Marker** — follow the Display Mode, none, or a shape: dot, bar, square, ring, diamond, triangle.
+- **Icon** — one of Unity's built-in icons: **Choose…**.
+
+The **Preview** row shows the result before you look at the Hierarchy. Try a dark blue background with a
+white custom text color, or a camera icon with a red marker. **Save As Preset** turns the style into a
+preset.
+
+---
+
+## 6. Make the presets yours (1 minute)
 
 In the **Presets** section:
 
@@ -74,7 +97,8 @@ In the **Presets** section:
 - Type a hexadecimal value (`#3498DB`, `3498DBFF` and `#39D` are all accepted). The field turns red while
   the value is not a valid color.
 - Use **▲ ▼** to reorder, **×** to delete, **Add Preset** to create one.
-- **Apply** assigns a preset to the current selection.
+- **▸** expands a preset to edit its complete style: background, text color, marker and icon.
+- **Apply** gives the current selection the preset's complete style.
 
 Every preset edit is undoable.
 
@@ -82,9 +106,9 @@ Every preset edit is undoable.
 
 ## Next steps
 
-- Assign keyboard shortcuts in **Edit → Shortcuts → Hierarchy Color Studio**. Only *Open Color Studio*
-  (**Alt + Shift + H**) has a default binding; *Set Color*, *Apply Last Color* and *Clear Color* are left
-  unbound so they cannot collide with an existing binding of yours.
+- Review the keyboard shortcuts in **Edit → Shortcuts → Hierarchy Color Studio**: *Open Color Studio*
+  (**Alt + Shift + H**), *Set Color* (**Alt + Shift + C**) and *Clear Color* (**Alt + Shift + Backspace**)
+  have default bindings; *Apply Last Color* is unbound. All of them can be rebound.
 - Commit `ProjectSettings/HierarchyColorStudio.asset` to share colors with your team.
 - Read [UserGuide.md](UserGuide.md) for the full feature reference.
 

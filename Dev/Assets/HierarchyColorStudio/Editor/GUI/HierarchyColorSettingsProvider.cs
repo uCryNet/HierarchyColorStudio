@@ -26,7 +26,8 @@ namespace CryNet.HierarchyColorStudio
                 guiHandler = OnGUI,
                 keywords = new HashSet<string>
                 {
-                    "hierarchy", "color", "colour", "marker", "preset", "tint", "studio"
+                    "hierarchy", "color", "colour", "marker", "preset", "tint", "studio", "style", "text",
+                    "icon", "zebra", "minimal", "folder", "prefab"
                 }
             };
         }

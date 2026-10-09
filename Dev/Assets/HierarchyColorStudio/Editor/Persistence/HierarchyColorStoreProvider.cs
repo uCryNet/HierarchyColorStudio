@@ -86,6 +86,15 @@ namespace CryNet.HierarchyColorStudio
         {
             s_Store = HierarchyColorStoreFile.LoadOrCreate();
 
+            // Logged here rather than during the upgrade itself: the logger reads its setting from the store,
+            // which is only reachable once it has been assigned. The upgraded data is written with the next
+            // change, so opening a project never produces a source-control diff by itself.
+            if (s_Store.UpgradedFromVersion > 0)
+            {
+                StudioLog.Info(HierarchyColorStoreFile.RelativePath + " was upgraded from schema " +
+                               s_Store.UpgradedFromVersion + " to " + HierarchyColorStore.CurrentVersion + ".");
+            }
+
             // Session-scoped keys reference instance ids, which are only meaningful until the Editor
             // is restarted. They must survive a domain reload but not a new session.
             if (SessionState.GetString(SessionMarkerKey, string.Empty) != SessionMarkerValue)

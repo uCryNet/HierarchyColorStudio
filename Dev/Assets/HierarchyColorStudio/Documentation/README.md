@@ -1,11 +1,12 @@
 # Hierarchy Color Studio
 
-**Version 1.0.0** · Editor-only Unity extension by CryNet
+**Version 1.1.0** · Editor-only Unity extension by CryNet
 · [crynet.dev](https://crynet.dev/) · [ucrynet@proton.me](mailto:ucrynet@proton.me)
 
 Hierarchy Color Studio colors GameObjects in Unity's Hierarchy window so large scenes stay readable.
 Pick one or more objects, assign a color, and the Hierarchy shows it as a marker, a row background, a
-colored name, or any combination of the three.
+colored name, or any combination of the three. A style can also give an object its own text color, a
+marker shape and one of Unity's built-in icons.
 
 No components are added to your GameObjects. No runtime code ships with the plugin. Nothing is written
 into your scenes.
@@ -75,18 +76,32 @@ rename freely.
 
 To remove a color, right-click → **Hierarchy Color → Clear Color**.
 
+Keyboard: **Alt + Shift + C** opens the palette for the selection, **Alt + Shift + Backspace** clears the
+selection's style. Clearing removes styling only — it never deletes a GameObject.
+
 Everything is undoable with **Ctrl/Cmd + Z**, including an assignment made to a whole multi-selection.
 
-A four-minute walkthrough is in [GettingStarted.md](GettingStarted.md).
+A five-minute walkthrough is in [GettingStarted.md](GettingStarted.md).
 
 ---
 
 ## Features
 
-- **Four ways to show a color** — row marker (dot, bar or square), translucent row background, colored
-  GameObject name, or any combination.
+- **Four ways to show a color** — row marker, translucent row background, colored GameObject name, or any
+  combination.
+- **Styles with independent elements** — main color, background, text color, marker and icon. Each follows
+  the project's Display Mode by default or is set per style.
+- **Separate text color** — with or without a background.
+- **Six marker shapes** — dot, bar, square, ring, diamond and triangle.
+- **Unity built-in icons** — a curated picker of Unity's own Editor icons, drawn in place of the object's
+  icon or at the row end. Icon and marker are independent: either, both or neither.
+- **Hierarchy modes** — *Zebra* row shading and *Minimal* (generic GameObject icons hidden), separately or
+  together.
+- **Folder and prefab icons** — optional replacement of Unity's icon on grouping objects and prefab
+  instance roots.
 - **Multi-selection** — one color applied to any number of GameObjects, as a single undo step.
-- **Color presets** — ten sensible defaults, fully editable: rename, recolor, reorder, add, delete.
+- **Presets** — ten sensible defaults, fully editable: rename, recolor, reorder, add, delete. A preset
+  stores a complete style.
 - **Custom colors** — RGB channel sliders and a validated hexadecimal field (`#FF6B35`, `FF6B35FF`,
   `#F63`, all accepted).
 - **Apply to children** — optional, off by default, available as *direct children* or *all descendants*.
@@ -97,7 +112,7 @@ A four-minute walkthrough is in [GettingStarted.md](GettingStarted.md).
 - **Maintenance tools** — select every colored object, remove entries whose object no longer exists,
   clear all colors, restore factory defaults.
 - **Project Settings page** and a dedicated **Color Studio window**, both showing the same controls.
-- **Keyboard shortcuts** through Unity's Shortcut Manager.
+- **Keyboard shortcuts** through Unity's Shortcut Manager, all rebindable.
 - **Light and dark Editor themes**, with no hard-coded text colors.
 - **Editor-only** — one assembly, restricted to the Editor platform. It cannot enter a player build.
 
@@ -105,20 +120,26 @@ A four-minute walkthrough is in [GettingStarted.md](GettingStarted.md).
 
 ## Settings
 
-Both **Tools → Hierarchy Color Studio → Color Studio Window** and
-**Edit → Project Settings → Hierarchy Color Studio** show the same four sections.
+**Tools → Hierarchy Color Studio → Color Studio Window** shows Selection, Presets, Appearance,
+Assignments and About; **Edit → Project Settings → Hierarchy Color Studio** shows the same controls
+except Selection.
 
 ### Appearance
 
 | Setting | Description |
 | --- | --- |
 | Enable Hierarchy Colors | Turns drawing on or off without deleting any assigned color. |
-| Display Mode | Any combination of Marker, Row Tint and Label Color. |
-| Marker Shape / Placement / Size | Dot, bar or square; at the row end or before the icon; 4–14 pt. |
+| Hierarchy Mode | Default, Zebra, Minimal, or Minimal + Zebra. Default leaves the Hierarchy unchanged. |
+| Stripe Strength | Opacity of the Zebra shading, 0.02–0.15. |
+| Display Mode | What a style shows by default: any combination of Marker, Row Tint and Label Color. |
+| Marker Shape / Placement / Size | Dot, bar, square, ring, diamond or triangle; at the row end or before the icon; 4–14 pt. |
 | Background Opacity | 0.04–0.65. Capped so row text stays readable. |
 | Background Extent | Whole row, or starting at the object's indentation. |
-| Text Brightness | Multiplies the color used for the GameObject name. |
+| Text Color | Color of the names of colored objects: each object's own color (default) or one custom color. Needs *Label Color*. |
+| Text Brightness | Multiplies the object's color used for the GameObject name. |
 | Fill Text Background | Fills the name area before drawing colored text. Off by default. |
+| Icon Placement | Style icons in place of the object's icon (default) or at the row end. |
+| Folder Icon / Prefab Icon | Optional built-in icon replacing Unity's icon on grouping objects / prefab instance roots. Off by default. |
 | Selected Rows | Draw all decorations, marker only (default), or nothing. |
 | Hovered Rows | Ignore (default), emphasize the background, or suppress it. |
 | Default Apply Scope | Selection only (default), direct children, or all descendants. |
@@ -126,9 +147,15 @@ Both **Tools → Hierarchy Color Studio → Color Studio Window** and
 | Row Color (Dark / Light Theme) *(Advanced)* | Fill color used by *Fill Text Background*. |
 | Debug Logging *(Advanced)* | Verbose Console diagnostics. Off by default. |
 
+### Selection
+
+The style of the selected objects, one row per element — **Color**, **Background**, **Text**, **Marker**
+and **Icon** — with a live **Preview** row. Every change applies to the whole selection as one undo step;
+values that differ across the selection are shown as mixed.
+
 ### Presets
 
-Add, rename, recolor, reorder and delete presets. Search filters the list by name or hexadecimal value;
+Add, rename, recolor, reorder and delete presets. Expand a preset to edit its complete style. Search filters the list by name or hexadecimal value;
 reordering is disabled while a search filter is active so the ordering buttons cannot act on a filtered
 view. **Apply** assigns a preset to the current selection.
 
@@ -175,7 +202,8 @@ The reasoning behind the alternatives that were considered is in
 ## Source control and teams
 
 Commit `ProjectSettings/HierarchyColorStudio.asset` to share colors with your team. Each record is one
-key/color pair on its own lines, so concurrent edits usually merge cleanly.
+key with its color and style on its own lines, so concurrent edits usually merge cleanly. Every member of
+a team should use the same plugin version: 1.0 cannot read the styles written by 1.1.
 
 If you prefer not to commit the file, use **Export Colors** / **Import Colors** to exchange a color
 scheme as a standalone JSON file.
@@ -184,8 +212,10 @@ scheme as a standalone JSON file.
 
 ## Performance
 
-The Hierarchy GUI callback runs for every visible row of every repaint, so it does exactly one dictionary
-lookup and, for a colored row, at most three draw calls. It allocates nothing.
+The Hierarchy GUI callback runs for every visible row of every repaint. A row without a style costs one
+dictionary lookup; a styled row costs a handful of draw calls. Styles are parsed and icons resolved ahead
+of time, so the callback allocates nothing. Zebra and Minimal modes, and folder and prefab icons, add a
+cached per-row check and at most two rectangles — only while they are enabled.
 
 All identity resolution happens outside the callback, in the Editor update loop, and only for colors that
 belong to a scene that is currently open. A project with 50,000 colored objects across 200 scenes resolves
@@ -205,6 +235,14 @@ Unity project except the file you choose in an explicit Import or Export dialog.
 
 ## Known limitations
 
+- **Unity 6.6 and later use a new Hierarchy window.** It no longer calls the IMGUI row callback this
+  plugin draws from, so decorations appear only in the legacy Hierarchy window, which Unity 6.6 lets you
+  re-enable in Project Settings. The supported versions are 2022.3 LTS and Unity 6 up to 6000.5.
+- **Replaced and hidden icons are painted over.** Unity draws its icon before the plugin is called, so a
+  replacement icon, or the gap Minimal mode leaves, is drawn on the row's background color. The colors
+  match Unity's themes; *Row Color (Dark / Light Theme)* under *Advanced* corrects the plain row color if
+  needed. Minimal mode leaves the name where Unity draws it, so names stay aligned with rows that keep
+  an icon.
 - **Colored names are drawn over Unity's own label.** Unity draws the row before the plugin is called, so
   *Label Color* paints the name a second time on top. With opaque colors this is visually clean; if you
   want a crisper result, enable *Fill Text Background* and check the two row colors under *Advanced*.
@@ -249,7 +287,7 @@ Console logged anything, the message.
 
 | Document | Contents |
 | --- | --- |
-| [GettingStarted.md](GettingStarted.md) | Four-minute setup and first colors. |
+| [GettingStarted.md](GettingStarted.md) | Five-minute setup, first colors and styles. |
 | [UserGuide.md](UserGuide.md) | Every feature, the architecture, and the design decisions. |
 | [Troubleshooting.md](Troubleshooting.md) | Symptoms, causes and fixes. |
 | [Changelog.md](Changelog.md) | Version history. |

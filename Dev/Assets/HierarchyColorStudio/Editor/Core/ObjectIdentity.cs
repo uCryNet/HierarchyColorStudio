@@ -87,26 +87,6 @@ namespace CryNet.HierarchyColorStudio
             return true;
         }
 
-        /// <summary>Builds the identity key for a single GameObject.</summary>
-        /// <param name="target">GameObject to identify.</param>
-        /// <param name="key">Receives the identity key.</param>
-        /// <returns><c>true</c> when a key could be produced.</returns>
-        internal static bool TryBuildKey(GameObject target, out string key)
-        {
-            key = null;
-            if (target == null)
-                return false;
-
-            var single = new[] { target };
-            var keys = new List<string>(1);
-            var accepted = new List<GameObject>(1);
-            if (!TryBuildKeys(single, keys, accepted) || keys.Count == 0)
-                return false;
-
-            key = keys[0];
-            return true;
-        }
-
         /// <summary>Parses a persisted <see cref="GlobalObjectId"/> key.</summary>
         /// <param name="key">Key to parse.</param>
         /// <param name="id">Receives the parsed identifier.</param>

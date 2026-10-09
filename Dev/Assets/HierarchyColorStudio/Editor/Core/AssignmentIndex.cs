@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 namespace CryNet.HierarchyColorStudio
 {
     /// <summary>
-    /// Maps Hierarchy instance ids to assigned colors.
+    /// Maps Hierarchy instance ids to assigned styles.
     /// </summary>
     /// <remarks>
     /// The Hierarchy GUI callback runs for every visible row of every repaint, so it may only perform a
@@ -29,7 +29,7 @@ namespace CryNet.HierarchyColorStudio
         {
             public GlobalObjectId Id;
             public string Guid;
-            public Color32 Color;
+            public RowStyle Style;
             public RowId SessionRowId;
             public bool IsSessionScoped;
             public int StoreIndex;
@@ -68,15 +68,31 @@ namespace CryNet.HierarchyColorStudio
         /// <summary><c>true</c> when a rebuild is pending.</summary>
         internal bool IsDirty => m_ParseDirty || m_ResolveDirty;
 
-        /// <summary>Looks up the color of a Hierarchy row. This is the only method called during repaint.</summary>
+        /// <summary>Looks up the style of a Hierarchy row. This is the only method called during repaint.</summary>
         /// <param name="rowId">Object identifier supplied by the Hierarchy GUI callback.</param>
-        /// <param name="color">Receives the assigned color.</param>
-        /// <returns><c>true</c> when the row has an assigned color.</returns>
-        internal bool TryGetColor(RowId rowId, out Color32 color)
+        /// <param name="style">Receives the assigned style.</param>
+        /// <returns><c>true</c> when the row has an assigned style.</returns>
+        internal bool TryGetStyle(RowId rowId, out RowStyle style)
         {
             if (m_RowToParsed.TryGetValue(rowId, out int parsedIndex) && parsedIndex < m_Parsed.Count)
             {
-                color = m_Parsed[parsedIndex].Color;
+                style = m_Parsed[parsedIndex].Style;
+                return true;
+            }
+
+            style = default;
+            return false;
+        }
+
+        /// <summary>Looks up the main color of a Hierarchy row.</summary>
+        /// <param name="rowId">Object identifier.</param>
+        /// <param name="color">Receives the assigned color.</param>
+        /// <returns><c>true</c> when the row has a style with a main color.</returns>
+        internal bool TryGetColor(RowId rowId, out Color32 color)
+        {
+            if (TryGetStyle(rowId, out RowStyle style) && style.Style.HasColor)
+            {
+                color = style.Style.Color;
                 return true;
             }
 
@@ -192,7 +208,7 @@ namespace CryNet.HierarchyColorStudio
                 {
                     m_Parsed.Add(new ParsedAssignment
                     {
-                        Color = assignment.Color,
+                        Style = RowStyle.From(assignment.Style),
                         SessionRowId = sessionRowId,
                         IsSessionScoped = true,
                         StoreIndex = i,
@@ -208,7 +224,7 @@ namespace CryNet.HierarchyColorStudio
                 {
                     Id = id,
                     Guid = ObjectIdentity.GetAssetGuid(id),
-                    Color = assignment.Color,
+                    Style = RowStyle.From(assignment.Style),
                     StoreIndex = i
                 });
             }

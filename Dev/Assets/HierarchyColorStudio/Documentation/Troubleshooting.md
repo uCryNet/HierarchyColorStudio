@@ -190,11 +190,76 @@ If the difference persists with drawing disabled, the cause is elsewhere.
 
 ## The keyboard shortcut does nothing
 
-Only **Open Color Studio** (**Alt + Shift + H**) has a default binding. *Set Color*, *Apply Last Color* and
-*Clear Color* are intentionally left unbound so they cannot collide with your existing bindings. Assign
-them in **Edit → Shortcuts → Hierarchy Color Studio**.
+Default bindings: **Open Color Studio** (**Alt + Shift + H**), **Set Color** (**Alt + Shift + C**) and
+**Clear Color** (**Alt + Shift + Backspace**). *Apply Last Color* is unbound. Check
+**Edit → Shortcuts → Hierarchy Color Studio**: if another package claims the same keys, the Shortcut
+Manager shows a conflict there, and you can rebind either command.
 
 Shortcuts that act on a selection do nothing when nothing is selected.
+
+---
+
+## Clear Color — will it delete my objects?
+
+No. *Clear Color* removes the plugin's styling — color, text color, marker and icon — from the selected
+objects. The GameObjects are never deleted or modified, and the operation is undoable.
+
+---
+
+## An icon shows "(missing)" or does not appear
+
+**Cause.** The icon was entered by name and does not exist in the Unity version you are running — names
+can differ between Unity releases. The 64 icons in the picker exist in every supported version.
+
+**Fix.** Pick another icon. Nothing else is affected: a missing icon simply draws nothing, without any
+Console message.
+
+---
+
+## A grouping object does not get the folder icon
+
+A row counts as a folder only when the GameObject has at least one child and no component besides its
+Transform (a missing script counts as a component). Objects with an icon chosen in the Inspector, prefab
+roots — which get the prefab icon instead — and objects with a style icon of their own are not changed.
+
+---
+
+## A faint square shows behind a replaced icon
+
+**Cause.** Replacing or hiding Unity's icon means painting over it in the row's background color, and
+your Editor's row color differs from the theme default.
+
+**Fix.** Set **Appearance → Advanced → Row Color (Dark Theme)** or **(Light Theme)** to your row color.
+
+---
+
+## Minimal mode leaves a gap before the name
+
+That is by design. The name stays where Unity draws it, so names line up with the rows that keep an icon,
+such as prefabs. See the UserGuide's *Why Minimal mode does not move the name*.
+
+---
+
+## A custom text color does not show, or looks doubled
+
+A custom text color is drawn over Unity's own label. If the two look muddy, enable
+**Appearance → Fill Text Background**, which hides Unity's label under the row color first.
+
+---
+
+## Nothing is drawn in Unity 6.6 or later
+
+Unity 6.6 introduced a new Hierarchy window that no longer calls the row callback this plugin draws from.
+Enable the legacy Hierarchy in Unity's Project Settings to see the decorations. Versions up to 6000.5 are
+not affected.
+
+---
+
+## A teammate on version 1.0 lost the new styles
+
+Version 1.0 does not know styles. Opening a 1.1 settings file there keeps the colors but drops text
+colors, markers and icons, and drops icon-only styles, when the file is next saved. Upgrade every member of
+the team together.
 
 ---
 

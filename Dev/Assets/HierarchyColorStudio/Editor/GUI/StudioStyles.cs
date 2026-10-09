@@ -15,8 +15,6 @@ namespace CryNet.HierarchyColorStudio
 
         private static GUIStyle s_SectionHeader;
         private static GUIStyle s_Hint;
-        private static GUIStyle s_SwatchButton;
-        private static GUIStyle s_MonospaceLabel;
         private static Texture2D s_ProductIcon;
         private static bool s_CachedProSkin;
 
@@ -48,34 +46,6 @@ namespace CryNet.HierarchyColorStudio
                 }
 
                 return s_Hint;
-            }
-        }
-
-        /// <summary>Flat button style used behind color swatches.</summary>
-        internal static GUIStyle SwatchButton
-        {
-            get
-            {
-                EnsureThemeUpToDate();
-                return s_SwatchButton ?? (s_SwatchButton = new GUIStyle(UnityEngine.GUI.skin.box)
-                {
-                    margin = new RectOffset(1, 1, 1, 1),
-                    padding = new RectOffset(0, 0, 0, 0)
-                });
-            }
-        }
-
-        /// <summary>Label style used for hexadecimal values.</summary>
-        internal static GUIStyle MonospaceLabel
-        {
-            get
-            {
-                EnsureThemeUpToDate();
-                return s_MonospaceLabel ?? (s_MonospaceLabel = new GUIStyle(EditorStyles.label)
-                {
-                    font = EditorStyles.miniLabel.font,
-                    alignment = TextAnchor.MiddleLeft
-                });
             }
         }
 
@@ -143,8 +113,6 @@ namespace CryNet.HierarchyColorStudio
             s_CachedProSkin = proSkin;
             s_SectionHeader = null;
             s_Hint = null;
-            s_SwatchButton = null;
-            s_MonospaceLabel = null;
         }
 
         private static Texture2D CreateProductIcon()

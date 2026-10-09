@@ -1,6 +1,6 @@
 # User Guide
 
-Complete feature reference and architecture notes for Hierarchy Color Studio 1.0.0.
+Complete feature reference and architecture notes for Hierarchy Color Studio 1.1.0.
 
 By CryNet · [crynet.dev](https://crynet.dev/) · [ucrynet@proton.me](mailto:ucrynet@proton.me)
 
@@ -13,6 +13,9 @@ By CryNet · [crynet.dev](https://crynet.dev/) · [ucrynet@proton.me](mailto:ucr
 - [The color palette](#the-color-palette)
 - [Presets](#presets)
 - [Display modes](#display-modes)
+- [Styles](#styles)
+- [Built-in icons](#built-in-icons)
+- [Hierarchy modes](#hierarchy-modes)
 - [Appearance settings](#appearance-settings)
 - [Parent and child coloring](#parent-and-child-coloring)
 - [Multi-selection](#multi-selection)
@@ -42,6 +45,9 @@ By CryNet · [crynet.dev](https://crynet.dev/) · [ucrynet@proton.me](mailto:ucr
 - [Why there is no Inspector section](#why-there-is-no-inspector-section)
 - [Why presets reorder with buttons](#why-presets-reorder-with-buttons)
 - [Why the palette has its own color picker](#why-the-palette-has-its-own-color-picker)
+- [Why icons are Unity's own](#why-icons-are-unitys-own)
+- [Why Minimal mode does not move the name](#why-minimal-mode-does-not-move-the-name)
+- [Why the shortcuts work everywhere](#why-the-shortcuts-work-everywhere)
 
 ---
 
@@ -53,10 +59,14 @@ Three routes, all equivalent:
 | --- | --- |
 | Hierarchy context menu | Right-click → **Hierarchy Color → Set Color…** |
 | Color Studio window | **Selection** section → **Color** field |
-| Keyboard | **Edit → Shortcuts → Hierarchy Color Studio → Set Color** (unbound by default) |
+| Keyboard | **Alt + Shift + C** opens the palette for the selection (*Set Color*, rebindable) |
 
 The **Color** field in the window applies live while you drag inside Unity's color picker. A continuous
 drag collapses into one undo step; pausing for about three quarters of a second starts a new one.
+
+To remove a style: **Hierarchy Color → Clear Color**, the **Clear** button, or **Alt + Shift + Backspace**.
+Clearing removes the color and every other style element from the selected objects; it never deletes or
+changes a GameObject.
 
 ---
 
@@ -66,10 +76,13 @@ drag collapses into one undo step; pausing for about three quarters of a second 
 
 - A header stating how many GameObjects the action will affect.
 - **Apply To** — Selection Only, Direct Children or All Descendants.
-- A grid of preset swatches. Hovering shows the preset name and hexadecimal value; clicking applies it
-  and closes the dropdown.
+- A grid of preset swatches. A swatch shows the preset's color, its icon and, as a small letter, its text
+  color. Hovering shows the preset name and hexadecimal value; clicking applies the preset's complete
+  style and closes the dropdown.
+- **Icon** — a grid of Unity built-in icons. Clicking one changes only the icon of the targets and keeps
+  their color; **∅** removes the icon.
 - **Custom Color** — a preview swatch, a validated hexadecimal field, R/G/B sliders, **Apply**, and
-  **Save As Preset**.
+  **Save As Preset**. Applying a custom color changes only the main color and keeps the other elements.
 - **Clear** — removes the color from the targets. Disabled when none of them has one.
 - **Open Color Studio…** — closes the dropdown and opens the window.
 
@@ -87,18 +100,26 @@ In the **Presets** section of either the window or Project Settings:
 
 | Control | Action |
 | --- | --- |
-| Swatch | Opens Unity's color picker. |
+| **▸** | Expands the preset to edit its complete style — color, background, text, marker, icon — with a preview row. |
+| Swatch | Opens Unity's color picker. Shows the preset's icon and text color on top; an empty frame means the preset has no main color. |
 | Name field | Rename. |
 | Hex field | Type a color. The border turns red while the text is not a valid color. |
-| **Apply** | Assigns the preset to the current selection. Disabled with an empty selection. |
+| **Apply** | Applies the preset's complete style to the current selection. Disabled with an empty selection. |
 | **▲ ▼** | Move the preset up or down. |
 | **×** | Delete the preset. |
 | **Add Preset** | Appends a preset using your last used color. |
 | **Restore Default Presets** | Replaces the list with the ten defaults. |
 | Search | Filters by name or hexadecimal value. |
 
-Deleting a preset never affects objects already colored with it: an assignment stores its own color, and
-the preset id it records is only used to display the preset's name. A dangling preset id is harmless.
+A preset stores a complete style, and applying it gives the targets exactly that look: an element the
+preset leaves at *Default* is set back to *Default*. To change only one element of objects that already
+have a style, use the Selection section or the palette's **Icon** section instead.
+
+**Save As Preset** in the Selection section creates a preset from the selection's style.
+
+Deleting or editing a preset never affects objects already styled with it: an assignment stores its own
+style, and the preset id it records is only used to remember where the style came from. A dangling preset
+id is harmless. Presets created by version 1.0 hold a color only, and keep looking exactly as they did.
 
 ---
 
@@ -116,8 +137,21 @@ A colored shape on the row.
   Environment                                   ●
 ```
 
-Shape: **Dot**, **Bar** (a rounded vertical strip) or **Square**. Placement: **Row End** (default) or
-**Before Icon**. Size: 4–14 pt.
+| Shape | Look | Typical use |
+| --- | --- | --- |
+| **Dot** | filled circle | the default, general classification |
+| **Bar** | rounded vertical strip | a quiet edge accent |
+| **Square** | sharp square | a firm category |
+| **Ring** | unfilled circle | secondary, optional or temporary objects |
+| **Diamond** | square on its corner, the shape of Unity's gizmo icons | key objects |
+| **Triangle** | upward triangle | needs attention, work in progress |
+
+The three newer shapes were chosen because each has a silhouette that stays distinct from the others at
+8 pt, so a category can be read from shape as well as color — which also helps with color-vision
+deficiencies. Diamond and triangle are drawn slightly larger than their box so that every shape has the
+same visual weight at a given size. Dot, Bar and Square are drawn exactly as in 1.0.
+
+Placement: **Row End** (default) or **Before Icon**. Size: 4–14 pt.
 
 ### Row Tint
 
@@ -142,6 +176,17 @@ The GameObject's name re-drawn in the assigned color.
   Environment     (green)
 ```
 
+**Text Color** chooses which color that is, for every colored object at once:
+
+| Text Color | The name is drawn in |
+| --- | --- |
+| **Object Color** *(default)* | each object's own color, multiplied by **Text Brightness** — the 1.0 behaviour |
+| **Custom** | one color you pick, for example white on every tinted row; *Text Brightness* does not apply |
+
+It applies to every style whose *Text* is *Default*, which includes every color applied from the palette,
+the shortcuts and the context menu. A style with its own *Text* setting — *Unity Color* or *Custom* —
+keeps it. The setting is only available while *Label Color* is ticked in the Display Mode.
+
 Unity draws the row before the plugin is called, so this paints the name a second time on top of Unity's
 own. With opaque colors the result is clean. If you want crisper text, enable **Fill Text Background**,
 which fills the name area with the configured row color first; check **Row Color (Dark Theme)** and
@@ -149,6 +194,110 @@ which fills the name area with the configured row color first; check **Row Color
 
 The default is **Marker + Row Tint**, chosen because neither decoration modifies Unity's own text, so the
 Hierarchy stays exactly as readable as it was before installation.
+
+The Display Mode is the project-wide default. A style can override each decoration for its own rows — see
+[Styles](#styles).
+
+---
+
+## Styles
+
+Every styled object has a complete **style**. Its elements are independent:
+
+| Element | Options | Meaning |
+| --- | --- | --- |
+| **Color** | on/off + color | The main color. The background and the marker are drawn in it. Untick it for a style made of an icon or a text color alone. |
+| **Background** | Default · None · Show | Whether the row gets the translucent wash. *Default* follows *Row Tint* in the Display Mode. |
+| **Text** | Default · Unity Color · Custom | *Default* follows *Label Color* and the project's *Text Color* (the main color, or the project's custom text color). *Unity Color* never recolors the name. *Custom* draws it in its own color. |
+| **Marker** | Default · None · a shape | *Default* follows *Marker* in the Display Mode with the project shape. A shape always draws that marker. |
+| **Icon** | none or a built-in icon | What the object is. See [Built-in icons](#built-in-icons). |
+
+The labels show what *Default* currently means — for example *Default (Shown)* or *Default (Dot)* — so the
+effect of every option is visible before you pick it. The **Preview** row draws the style the way the
+Hierarchy will.
+
+### Examples
+
+| Goal | Color | Background | Text | Marker | Icon |
+| --- | --- | --- | --- | --- | --- |
+| Dark blue band with white text | dark blue | Show | Custom: white | Default | — |
+| Orange text only | off | — | Custom: orange | — | — |
+| Camera icon and a red marker | red | None | Default | Dot | Camera |
+| Icon only | off | — | Default | — | Light |
+| Marker only | green | None | Unity Color | Triangle | — |
+
+### Icon and marker
+
+The icon answers *what is this?* — a camera, a manager, a UI root. The marker answers *how is it
+classified?* — red for enemies, a triangle for work in progress. They are separate elements, so a row can
+have neither, either or both. With the default **Icon Placement** the icon replaces the GameObject's own
+icon at the start of the row and the marker sits at the row end, so the two never compete for space. With
+**Row End** placement the icon is drawn at the end of the row, just before a row-end marker.
+
+### What each action changes
+
+| Action | Changes | Keeps |
+| --- | --- | --- |
+| Apply a preset (palette swatch, **Apply**, *Apply Last Color*) | the complete style | nothing |
+| Pick a custom color, drag the **Color** field | the main color | text color, marker, icon |
+| Change one row in the Selection section | that element | every other element |
+| Pick an icon in the palette | the icon | everything else |
+| **Clear Color** | removes the style | — (the GameObject is never touched) |
+
+Switching on a background or a marker for an object that has no main color gives it your most recently
+used color, because neither can be drawn without one.
+
+### Text color without the legacy guesswork
+
+A color assigned in 1.0 has no text color of its own: its name follows the Display Mode, as it always did.
+That state — *not configured* — is stored as such, not as a color, so it can never be confused with an
+explicit text color that happens to look the same.
+
+---
+
+## Built-in icons
+
+Icons are Unity's own Editor icons. The plugin ships no icon of its own.
+
+**Choose…** opens a picker with 64 icons in groups — General, Status, Rendering, Audio, Physics, Animation,
+UI, Navigation & 2D, Scripting & Media — and a search field. Every one of them was verified to exist in
+Unity 2022.3, 6000.3 and 6000.5. **Icon Name** at the bottom accepts any other built-in icon name; a name
+that does not exist in the running Unity version is rejected rather than stored. Icons follow the Editor
+theme and the display density automatically, exactly as Unity's own icons do.
+
+Icons of inactive GameObjects are drawn faded, matching Unity.
+
+### Folder and prefab icons
+
+Two optional settings in **Appearance** replace Unity's icon on whole categories of rows, without
+assigning anything to individual objects:
+
+| Setting | Rows | Unity's default |
+| --- | --- | --- |
+| **Folder Icon** | Grouping objects: GameObjects that have children and no component besides their Transform | the generic GameObject icon |
+| **Prefab Icon** | Prefab instance roots, including variants and model prefabs | the prefab icon |
+
+Both are off by default, so Unity's icons stay unchanged until you choose otherwise. A style's own icon
+takes precedence over them. Rows whose icon carries information are never replaced: an icon chosen in the
+Inspector, a missing prefab, and a GameObject added to a prefab instance keep Unity's icon.
+
+Unity's Hierarchy has no folders of its own; a grouping object is the convention most projects already use
+for one. The plugin adds no component to mark it — the classification is purely visual.
+
+---
+
+## Hierarchy modes
+
+**Hierarchy Mode** changes every row, not only styled ones:
+
+| Mode | Effect |
+| --- | --- |
+| **Default** | Unity's Hierarchy unchanged, plus the decorations of styled rows. Every project upgraded from 1.0 starts here. |
+| **Zebra** | Every second row is shaded slightly — lighter in the dark theme, darker in the light theme — so long, flat lists are easier to follow. **Stripe Strength** sets the opacity (0.02–0.15, default 0.05). Selected rows are left alone so Unity's selection highlight stays exact. |
+| **Minimal** | Unity's generic GameObject icon is hidden on ordinary rows and grouping objects, so the icons that do carry meaning stand out: prefab icons, icons chosen in the Inspector, style icons and folder or prefab icons. Colors, markers and text colors are untouched. |
+| **Minimal + Zebra** | Both. |
+
+Zebra stripes sit underneath the style decorations, so colors read the same on striped and plain rows.
 
 ---
 
@@ -161,6 +310,9 @@ Unity draws its own highlight on selected rows. **Selected Rows** controls what 
 - **Draw All** — every enabled decoration.
 - **Marker Only** *(default)* — only the marker, so the selection highlight stays intact.
 - **Hide** — nothing.
+
+Icons are shown on selected rows in every case: they stand in for Unity's own icon, which Unity keeps
+showing there too.
 
 ### Hovered rows
 
@@ -222,8 +374,9 @@ Undoable operations:
 - Apply a preset
 - Apply to a multi-selection
 - Clear all colors
-- Add, rename, recolor, reorder or delete a preset
-- Change appearance settings
+- Change any style element — text color, background, marker, icon — on one or many objects
+- Add, rename, recolor, reorder or delete a preset, or edit its style
+- Change appearance settings, including the Hierarchy mode and the folder and prefab icons
 - Import a color set
 - Remove missing entries
 
@@ -233,7 +386,7 @@ you see in **Edit → Undo …**.
 Two behaviours worth knowing:
 
 - **Continuous edits collapse.** Dragging a color picker or a slider produces one undo step, not one per
-  frame.
+  frame. A discrete change in between — applying a preset, for example — always starts a new step.
 - **A recompilation clears the undo stack.** Unity discards undo records for non-asset objects on domain
   reload. Your colors persist; the ability to undo past the reload does not.
 
@@ -244,15 +397,20 @@ Two behaviours worth knowing:
 Registered with Unity's Shortcut Manager under the category **Hierarchy Color Studio**, so they appear in
 **Edit → Shortcuts** and can be rebound or removed.
 
-| Command | Default binding |
-| --- | --- |
-| Open Color Studio | **Alt + Shift + H** |
-| Set Color | *unbound* |
-| Apply Last Color | *unbound* |
-| Clear Color | *unbound* |
+| Command | Default binding | Effect |
+| --- | --- | --- |
+| Open Color Studio | **Alt + Shift + H** | Opens the Color Studio window. |
+| Set Color | **Alt + Shift + C** | Adds or changes the color of the selection: opens the palette. |
+| Clear Color | **Alt + Shift + Backspace** | Removes the style from the selection. Only the styling is removed; GameObjects are never deleted. |
+| Apply Last Color | *unbound* | Re-applies the last used preset, or the last custom color. |
 
-Only one default binding is claimed, and it uses a modifier combination Unity does not use, so installing
-the plugin cannot take a shortcut away from you.
+All commands act on the whole selection as one undo step, honour the current **Apply To** scope, and do
+nothing when nothing is selected.
+
+The defaults use Alt + Shift, which Unity uses only for *Toggle Active State* (A), *Create Empty Child*
+(N) and a Tile Palette command (B). C and Backspace were checked against every default binding of Unity 6
+and against ProBuilder, which claims Alt + Shift + X, G and the digits. The command identifiers are the
+same as in 1.0, so a binding you customised is kept. There are deliberately no per-preset shortcuts.
 
 ---
 
@@ -278,17 +436,25 @@ surprising. Color an instance in the scene to color that instance.
 
 ## Import and export
 
-**Export Colors** writes a readable JSON file containing every preset and every persistent color
+**Export Colors** writes a readable JSON file containing every preset and every persistent style
 assignment:
 
 ```json
 {
     "kind": "CryNet.HierarchyColorStudio.ColorSet",
-    "version": 1,
-    "presets": [ { "id": "…", "name": "Blue", "color": "3498DBFF" } ],
-    "assignments": [ { "key": "GlobalObjectId_V1-2-…", "color": "3498DBFF", "preset": "…" } ]
+    "version": 2,
+    "presets": [ { "color": "3498DBFF", "background": "Default", "text": "Default", "textColor": "",
+                   "marker": "Default", "markerShape": "", "icon": "", "id": "…", "name": "Blue" } ],
+    "assignments": [ { "color": "1A2B6CFF", "background": "On", "text": "On", "textColor": "FFFFFFFF",
+                       "marker": "On", "markerShape": "Diamond", "icon": "Camera Icon",
+                       "key": "GlobalObjectId_V1-2-…", "preset": "" } ]
 }
 ```
+
+Style elements are named, optional fields. A version 1 file — color only — imports with exactly its old
+meaning; unknown or unreadable element values fall back to *Default* instead of rejecting the entry. An
+empty `color` is valid when another element draws something, such as an icon. Version 1.0 of the plugin
+can still read the colors of a version 2 file and ignores the rest.
 
 **Import Colors** offers **Merge** (keeps existing colors, adds and overwrites by key) or **Replace**
 (discards current colors and presets first). Either way the import is one undo step. Files that are not
@@ -351,8 +517,13 @@ and a promise worth more than saving the reader one paste. The same section carr
 
 `HierarchyColorStudioBootstrap` wires the Editor events. `EditorCompat` and `RowId` contain every piece of
 Unity-version-specific code. The GUI layer (`ColorPaletteWindow`, `HierarchyColorStudioWindow`,
-`AppearanceSectionGUI`, `PresetSectionGUI`, `HierarchyColorSettingsProvider`) reads and writes only
-through the service.
+`AppearanceSectionGUI`, `PresetSectionGUI`, `StyleEditorGUI`, `IconPickerGUI`,
+`HierarchyColorSettingsProvider`) reads and writes only through the service.
+
+Styles add a few small types: `HierarchyStyle` (the public value type), `StyleElements` (its serialized
+form inside assignments and presets), `RowStyle` and `DecorationPlan` (a style prepared for drawing, and
+the rules that decide what a row draws), `HierarchyRowClassifier` (folder, prefab and plain rows, cached),
+`BuiltinIcons` (Unity icon lookup and the picker catalog), `MarkerShapes` and `HierarchyRowBackground`.
 
 ---
 
@@ -363,8 +534,31 @@ Everything the project needs is in one serialized `ScriptableObject`, `Hierarchy
 - a schema version,
 - appearance settings,
 - the preset list,
-- the assignment list, where each record is `{ key, color, presetId }` and the color is stored as an
-  `RRGGBBAA` hexadecimal string.
+- the assignment list, where each record is `{ key, color, presetId, elements }`: the color is an
+  `RRGGBBAA` hexadecimal string — empty for a style without a main color — and `elements` holds
+  background, text, text color, marker, marker shape and icon.
+
+Presets carry the same `color` and `elements`.
+
+### Schema versions and upgrading
+
+| Schema | Version | Content |
+| --- | --- | --- |
+| 1 | 1.0 | a color and a preset id per object; color-only presets |
+| 2 | 1.1 | complete styles for assignments and presets; Hierarchy modes; icon placement; folder and prefab icons; project text color |
+
+Every field added in schema 2 has a zero or empty default that means "behave like schema 1": follow the
+Display Mode, no text color, no icon, Default mode, no folder or prefab icon, names in the object's own
+color. On top of that, loading a
+schema 1 file runs an explicit upgrade that sets those fields to their schema 1 meaning — so the result
+does not depend on how a particular Unity version fills fields absent from a file — and applies the rules
+1.0 applied on load: an unreadable preset color becomes white, an assignment without a usable color is
+dropped. The upgrade happens in memory; the file is rewritten in schema 2 only with the next change, so
+opening a project never produces a source-control diff by itself.
+
+A file written by a newer schema is loaded with every field this version understands; the rest is dropped
+when the file is next saved. Version 1.0 treats a schema 2 file the same way and loses the style
+elements, so a team should upgrade together.
 
 `HierarchyColorStoreFile` reads and writes it with
 `InternalEditorUtility.LoadSerializedFileAndForget` / `SaveToSerializedFileAndForget` in text mode — the
@@ -435,9 +629,25 @@ The callback:
 
 1. records the mouse position on a context click, so the palette can be anchored there later;
 2. returns immediately unless the current event is a repaint;
-3. reads the assigned color with a single dictionary lookup, and returns if there is none;
-4. applies the selected-row and hovered-row rules;
-5. draws up to three things.
+3. reads the prepared style with a single dictionary lookup, and returns if there is none and no Hierarchy
+   mode or folder or prefab icon is active;
+4. decides what to draw with `DecorationPlan.Resolve`, which applies the Display Mode, the style's
+   overrides and the selected-row rule, and is unit-tested on its own;
+5. draws, back to front: the cover over Unity's icon (when it is replaced or hidden), the zebra stripe, the
+   background wash, the re-drawn name, the icon, and the marker.
+
+Unity draws a row before the plugin is called, so replacing or hiding its icon means painting over it with
+the row's background color. That color depends on the row's state: the plain row color for normal rows,
+the theme's hover color under the pointer, and the selection color — blue while the Hierarchy has keyboard
+focus in the active Editor, grey otherwise — on selected rows. The conditions Unity uses are evaluated with
+public API (`InternalEditorUtility.isApplicationActive`, `EditorWindow.focusedWindow`,
+`GUIUtility.keyboardControl`, `EditorGUIUtility.editingTextField`); the Hierarchy window is recognised by
+its type name, never by reflection. *Fill Text Background* uses the same color and then restores the tint
+and zebra stripe behind the re-drawn name.
+
+Dot, Bar, Square and Ring are rounded rectangles over Unity's built-in white texture. Diamond and Triangle
+are drawn from two 64 × 64 alpha masks generated in code on first use, with supersampled edges and
+mipmaps, and destroyed before every assembly reload.
 
 Rounded shapes are drawn with `GUI.DrawTexture` and a corner radius over Unity's built-in white texture,
 so no textures are created. The product icon is generated procedurally in code, so the package contains no
@@ -495,6 +705,15 @@ The Hierarchy GUI callback is the only hot path, and it is treated as such.
   colors. The contents of a single prefab are small and bounded.
 - Saves are debounced, so dragging a color picker writes the file once.
 - The Hierarchy is repainted when the resolved set actually changes, not on every frame.
+
+- Styles are parsed when the index is rebuilt, and each icon name is turned into a small integer handle at
+  that point. The callback reads textures through the handle with an array access; textures are resolved
+  once per icon and theme.
+- Minimal mode and folder and prefab icons need to know what a row is — a grouping object, a prefab root,
+  an object with an Inspector icon. That classification is cached per row and dropped when the Hierarchy,
+  a component or a prefab connection changes. Only rows that are drawn are ever classified, and nothing is
+  subscribed until the first row is: a project that does not use these features pays nothing for them.
+- Zebra mode costs one rectangle on every second visible row.
 
 **Scaling**
 
@@ -556,6 +775,24 @@ inside `EditorCompat`.
 
 If a future Unity release moves one of these boundaries, the fix is to edit the expression in the assembly
 definition. No other file needs to change.
+
+The 1.1 features add no version-specific code:
+
+- **Built-in icons** are loaded with `EditorGUIUtility.Load`, which is public in every supported version,
+  returns `null` without logging for an unknown name, and is not cached by Unity. The plugin reproduces
+  Unity's own lookup — the `d_` variant in the dark theme, the `@2x` variant on high-density displays — and
+  caches the result per theme. `EditorGUIUtility.IconContent` was not used: it logs an error for unknown
+  names and keeps returning the previous theme's texture after a theme switch.
+- **Shortcuts** use `[Shortcut]` in the global context. A Hierarchy-only context would need
+  `ShortcutManager.RegisterContext`, which became public only in Unity 6.
+- **Prefab and icon classification** uses `PrefabUtility.IsAnyPrefabInstanceRoot`, `IsPrefabAssetMissing`,
+  `IsAddedGameObjectOverride`, `EditorGUIUtility.GetIconForObject` and `ObjectChangeEvents`, all public in
+  2022.3 and later.
+
+**Unity 6.6 and later** replace the Hierarchy window with a UI Toolkit implementation that does not call
+the IMGUI row callbacks. The plugin draws only in the legacy Hierarchy window there, which Unity 6.6 can
+re-enable in Project Settings. Supporting the new window needs its own row-binding API and is outside the
+2022.3 – Unity 6 range this version targets.
 
 Unity releases in the transition to `EntityId` deprecate the 32-bit API while not yet exposing `EntityId`
 itself. In those versions the deprecated API is the only one available, so the notice is suppressed at the
@@ -636,6 +873,24 @@ bool  HasSessionScopedAssignments { get; }
 event Action Changed;
 ```
 
+Styles (1.1):
+
+```csharp
+bool  TryGetStyle(GameObject target, out HierarchyStyle style);
+int   ApplyStyle(IReadOnlyList<GameObject> targets, HierarchyStyle style, string presetId = null,
+                 ApplyScope scope = ApplyScope.SelectionOnly, bool continuousEdit = false);
+int   ApplyPreset(IReadOnlyList<GameObject> targets, ColorPreset preset,
+                  ApplyScope scope = ApplyScope.SelectionOnly);
+int   ModifyStyle(IReadOnlyList<GameObject> targets, StyleFields fields, HierarchyStyle values,
+                  ApplyScope scope = ApplyScope.SelectionOnly, bool continuousEdit = false);
+bool  AnyHasStyle(IReadOnlyList<GameObject> targets);
+```
+
+`HierarchyStyle` is a value type with `HasColor`, `Color`, `Background`, `Text`, `TextColor`, `Marker`,
+`MarkerShape` and `Icon`. `ApplyStyle` replaces the whole style, `ModifyStyle` changes only the elements
+named by `StyleFields`, and `Assign` keeps changing only the main color. `ColorPreset.Style` reads and
+writes a preset's complete style.
+
 All of it is undoable and safe to call from menu items, windows and custom tooling. Calls with a null or
 empty target list are no-ops rather than errors.
 
@@ -672,3 +927,30 @@ A dropdown closes as soon as it loses focus. Opening Unity's modal color picker 
 dropdown and discards the pending choice. The palette therefore offers channel sliders and a validated
 hexadecimal field, both of which keep focus inside the dropdown, and defers to Unity's full color picker
 in the Color Studio window and the Project Settings page, where it works correctly.
+
+---
+
+## Why icons are Unity's own
+
+A custom icon library would add binary assets to every project, need its own light and dark variants and
+grow stale as Unity's style evolves. Unity's built-in icons already match the Editor in both themes and
+at every display density, and every user already knows what they mean. The picker is a curated subset of
+them, checked in every supported Unity version, and any other built-in icon can still be used by name.
+
+---
+
+## Why Minimal mode does not move the name
+
+Moving the name into the space of a hidden icon would mean painting over Unity's label and drawing every
+name again — re-implementing Unity's colors for prefabs, inactive, missing and selected objects, on every
+row. Leaving the name where Unity draws it keeps that logic Unity's, costs nothing on rows that are not
+styled, and keeps names aligned with the rows that do keep an icon, such as prefabs.
+
+---
+
+## Why the shortcuts work everywhere
+
+The shortcuts act on the selection, which can be made in the Scene view as well as in the Hierarchy, so
+they are registered in Unity's global context like the 1.0 shortcuts. A context limited to the Hierarchy
+would avoid any possible clash, but requires an API that is public only from Unity 6, and two behaviours
+for one product would be harder to explain than one carefully chosen default binding.

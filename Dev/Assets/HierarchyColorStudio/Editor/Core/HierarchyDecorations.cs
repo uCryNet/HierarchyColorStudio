@@ -22,6 +22,10 @@ namespace CryNet.HierarchyColorStudio
     }
 
     /// <summary>Shape used when drawing the row marker.</summary>
+    /// <remarks>
+    /// The values are persisted as integers, so existing values never change meaning and new shapes are
+    /// only ever appended.
+    /// </remarks>
     public enum MarkerShape
     {
         /// <summary>A filled circle.</summary>
@@ -31,7 +35,77 @@ namespace CryNet.HierarchyColorStudio
         Bar = 1,
 
         /// <summary>A sharp-cornered square.</summary>
-        Square = 2
+        Square = 2,
+
+        /// <summary>An unfilled circle. Lighter than a dot, for secondary or temporary objects.</summary>
+        Ring = 3,
+
+        /// <summary>A square standing on one corner, the shape of Unity's own gizmo icons.</summary>
+        Diamond = 4,
+
+        /// <summary>An upward-pointing triangle, the conventional shape for "needs attention".</summary>
+        Triangle = 5
+    }
+
+    /// <summary>
+    /// Overall look of the Hierarchy window, applied to every row rather than to styled rows only.
+    /// The two modes are independent and can be combined.
+    /// </summary>
+    [Flags]
+    public enum HierarchyMode
+    {
+        /// <summary>Unity's Hierarchy unchanged, plus the decorations of styled rows.</summary>
+        Default = 0,
+
+        /// <summary>Subtle alternating row shading, so long flat lists stay easy to follow.</summary>
+        Zebra = 1 << 0,
+
+        /// <summary>Unity's generic GameObject icon is hidden, so the icons that carry meaning stand out.</summary>
+        Minimal = 1 << 1
+    }
+
+    /// <summary>
+    /// How one element of a style — its background, text or marker — relates to the project-wide
+    /// <see cref="HierarchyDecorations"/> display mode.
+    /// </summary>
+    /// <remarks>
+    /// <see cref="Default"/> is zero on purpose: a field missing from data written by an older version
+    /// deserializes to it, which reproduces the older version's behaviour exactly.
+    /// </remarks>
+    public enum StyleOverride
+    {
+        /// <summary>Follow the project's display mode.</summary>
+        Default = 0,
+
+        /// <summary>Never draw this element for the style, whatever the display mode says.</summary>
+        Off = 1,
+
+        /// <summary>Always draw this element for the style, using the style's own value.</summary>
+        On = 2
+    }
+
+    /// <summary>Color in which the display mode re-draws the name of a colored object.</summary>
+    /// <remarks>
+    /// Applies to every style whose text follows the display mode, including colors applied from the
+    /// palette. A style with its own text color keeps it.
+    /// </remarks>
+    public enum TextColorSource
+    {
+        /// <summary>The object's own color, scaled by the text brightness. The behaviour of version 1.0.</summary>
+        ObjectColor = 0,
+
+        /// <summary>One color for the names of all colored objects.</summary>
+        Custom = 1
+    }
+
+    /// <summary>Where the icon of a style is drawn.</summary>
+    public enum IconPlacement
+    {
+        /// <summary>In place of the GameObject's own icon, at the start of the row.</summary>
+        ObjectIcon = 0,
+
+        /// <summary>At the right edge of the row, next to a row-end marker.</summary>
+        RowEnd = 1
     }
 
     /// <summary>Where the row marker is placed.</summary>

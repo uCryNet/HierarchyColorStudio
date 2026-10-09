@@ -83,6 +83,7 @@ namespace CryNet.HierarchyColorStudio
         {
             HierarchyColorService.InvalidateResolution();
             HierarchyRowRenderer.InvalidateLabels();
+            HierarchyRowClassifier.Invalidate();
         }
 
         private static void OnSelectionChanged()
@@ -95,6 +96,7 @@ namespace CryNet.HierarchyColorStudio
         {
             HierarchyColorService.InvalidateAll();
             HierarchyColorStoreProvider.MarkChanged();
+            HierarchyRowClassifier.Invalidate();
         }
 
         private static void OnSceneOpened(Scene scene, OpenSceneMode mode)
@@ -121,16 +123,19 @@ namespace CryNet.HierarchyColorStudio
         private static void OnPrefabStageOpened(PrefabStage stage)
         {
             HierarchyColorService.InvalidateResolution();
+            HierarchyRowClassifier.Invalidate();
         }
 
         private static void OnPrefabStageClosing(PrefabStage stage)
         {
             HierarchyColorService.InvalidateResolution();
+            HierarchyRowClassifier.Invalidate();
         }
 
         private static void OnBeforeAssemblyReload()
         {
             HierarchyColorStoreProvider.Flush();
+            MarkerShapes.ReleaseTextures();
         }
 
         private static void OnQuitting()

@@ -8,11 +8,26 @@ namespace CryNet.HierarchyColorStudio
     /// Menu and keyboard entry points.
     /// </summary>
     /// <remarks>
+    /// <para>
     /// Unity invokes a <c>GameObject/</c> menu item once per selected object. Every command is therefore
     /// routed through <see cref="RunOnce"/>, which collapses one click into a single operation so a
     /// multi-selection produces exactly one undo step.
-    /// Only the window shortcut has a default binding. The remaining commands are registered without one
-    /// so they cannot collide with a Unity default; users assign them in Edit &gt; Shortcuts.
+    /// </para>
+    /// <para>
+    /// Shortcuts are registered with Unity's Shortcut Manager, so every binding can be changed or removed
+    /// in Edit &gt; Shortcuts. Their identifiers never change, which keeps a binding a user has customised.
+    /// Three commands have a default binding, all on Alt + Shift and all verified against the bindings
+    /// of Unity 6 and of popular packages such as ProBuilder, which already claims Alt + Shift + X and G:
+    /// </para>
+    /// <list type="bullet">
+    /// <item><description><b>Alt + Shift + H</b> — open the Color Studio window.</description></item>
+    /// <item><description><b>Alt + Shift + C</b> — add or change the color of the selection (opens the palette).</description></item>
+    /// <item><description><b>Alt + Shift + Backspace</b> — clear the style of the selection. It removes styling
+    /// only and never deletes a GameObject.</description></item>
+    /// </list>
+    /// <para>
+    /// Apply Last Color stays unbound. There are deliberately no per-preset shortcuts.
+    /// </para>
     /// </remarks>
     internal static class HierarchyColorMenus
     {
@@ -54,7 +69,7 @@ namespace CryNet.HierarchyColorStudio
         [MenuItem(UiStrings.MenuRootGameObject + UiStrings.MenuClearColor, true)]
         private static bool ClearColorFromHierarchyValidate()
         {
-            return HierarchyColorService.AnyHasColor(Selection.gameObjects);
+            return HierarchyColorService.AnyHasStyle(Selection.gameObjects);
         }
 
         [MenuItem(UiStrings.MenuRootGameObject + UiStrings.MenuOpenStudio, false, GameObjectMenuPriority + 3)]
@@ -105,26 +120,25 @@ namespace CryNet.HierarchyColorStudio
             DocumentationLocator.Open();
         }
 
-        [Shortcut(UiStrings.ShortcutCategory + "Open Color Studio", null, KeyCode.H,
-            ShortcutModifiers.Alt | ShortcutModifiers.Shift)]
+        [Shortcut(UiStrings.ShortcutOpenStudio, null, KeyCode.H, ShortcutModifiers.Alt | ShortcutModifiers.Shift)]
         private static void OpenStudioShortcut()
         {
             HierarchyColorStudioWindow.Open();
         }
 
-        [Shortcut(UiStrings.ShortcutCategory + "Set Color")]
+        [Shortcut(UiStrings.ShortcutSetColor, null, KeyCode.C, ShortcutModifiers.Alt | ShortcutModifiers.Shift)]
         private static void SetColorShortcut()
         {
             OpenPalette();
         }
 
-        [Shortcut(UiStrings.ShortcutCategory + "Apply Last Color")]
+        [Shortcut(UiStrings.ShortcutApplyLastColor)]
         private static void ApplyLastColorShortcut()
         {
             ApplyLastColor();
         }
 
-        [Shortcut(UiStrings.ShortcutCategory + "Clear Color")]
+        [Shortcut(UiStrings.ShortcutClearColor, null, KeyCode.Backspace, ShortcutModifiers.Alt | ShortcutModifiers.Shift)]
         private static void ClearColorShortcut()
         {
             ClearColor();
@@ -149,7 +163,7 @@ namespace CryNet.HierarchyColorStudio
             if (targets.Length == 0)
                 return;
 
-            HierarchyColorService.Assign(targets, LastUsedColor.Color, LastUsedColor.PresetId, LastUsedColor.Scope);
+            HierarchyColorService.ApplyLastUsed(targets, LastUsedColor.Scope);
         }
 
         private static void ClearColor()

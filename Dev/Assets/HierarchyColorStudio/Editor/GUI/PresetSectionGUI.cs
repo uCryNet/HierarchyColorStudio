@@ -5,7 +5,8 @@ using UnityEngine;
 namespace CryNet.HierarchyColorStudio
 {
     /// <summary>
-    /// Draws the preset editor: search, per-row editing, ordering, creation and deletion.
+    /// Draws the preset editor: search, per-row editing, ordering, creation and deletion. Each row can be
+    /// expanded to edit the preset's complete style — background, text color, marker and icon.
     /// </summary>
     /// <remarks>
     /// Ordering uses explicit move buttons rather than drag reordering. A drag reorder mutates the list
@@ -15,6 +16,8 @@ namespace CryNet.HierarchyColorStudio
     internal sealed class PresetSectionGUI
     {
         private const float SwatchWidth = 34f;
+        private const float FoldoutWidth = 14f;
+        private const float StyleIndent = 18f;
         private const float HexWidth = 78f;
         private const float ApplyWidth = 52f;
         private const float IconButtonWidth = 22f;
@@ -32,6 +35,7 @@ namespace CryNet.HierarchyColorStudio
         }
 
         private readonly List<int> m_VisibleIndices = new List<int>(32);
+        private readonly HashSet<string> m_Expanded = new HashSet<string>();
 
         private string m_Search = string.Empty;
         private string m_HexEditKey;
@@ -149,7 +153,7 @@ namespace CryNet.HierarchyColorStudio
 
                 if (string.IsNullOrEmpty(m_Search) ||
                     preset.Name.IndexOf(m_Search, System.StringComparison.OrdinalIgnoreCase) >= 0 ||
-                    ColorHex.ToHex(preset.Color).IndexOf(m_Search, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                    preset.Hex.IndexOf(m_Search, System.StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     m_VisibleIndices.Add(i);
                 }
@@ -160,23 +164,44 @@ namespace CryNet.HierarchyColorStudio
             IReadOnlyList<GameObject> selection)
         {
             var preset = presets[index];
+            var style = preset.Style;
             bool reorderable = string.IsNullOrEmpty(m_Search);
+            bool expanded = m_Expanded.Contains(preset.Id);
 
             using (new EditorGUILayout.HorizontalScope())
             {
+                var foldoutRect = GUILayoutUtility.GetRect(FoldoutWidth, EditorGUIUtility.singleLineHeight,
+                    GUILayout.Width(FoldoutWidth));
+                bool nowExpanded = EditorGUI.Foldout(foldoutRect, expanded, GUIContent.none, true);
+                if (nowExpanded != expanded)
+                {
+                    if (nowExpanded)
+                        m_Expanded.Add(preset.Id);
+                    else
+                        m_Expanded.Remove(preset.Id);
+                    expanded = nowExpanded;
+                }
+
                 var swatchRect = GUILayoutUtility.GetRect(SwatchWidth, EditorGUIUtility.singleLineHeight,
                     GUILayout.Width(SwatchWidth));
                 swatchRect.y += 1f;
                 swatchRect.height -= 2f;
 
-                EditorGUI.BeginChangeCheck();
-                Color newColor = EditorGUI.ColorField(swatchRect, GUIContent.none, preset.Color, true, false, false);
-                if (EditorGUI.EndChangeCheck())
+                if (style.HasColor)
                 {
-                    UndoScope.RecordContinuous(store, UiStrings.UndoEditPresets);
-                    preset.Color = newColor;
-                    HierarchyColorService.NotifySettingsChanged();
+                    EditorGUI.BeginChangeCheck();
+                    Color newColor = EditorGUI.ColorField(swatchRect, GUIContent.none, style.Color, true, false, false);
+                    if (EditorGUI.EndChangeCheck())
+                    {
+                        UndoScope.RecordContinuous(store, UiStrings.UndoEditPresets);
+                        preset.Color = newColor;
+                        HierarchyColorService.NotifySettingsChanged();
+                    }
                 }
+
+                // The color field shows the main color; the icon and the text color are drawn over it, or
+                // over an empty frame when the preset has no main color.
+                StylePreviewGUI.DrawSwatch(swatchRect, style.HasColor ? StyleOverlay(style) : style);
 
                 EditorGUI.BeginChangeCheck();
                 string newName = EditorGUILayout.TextField(preset.Name);
@@ -214,14 +239,65 @@ namespace CryNet.HierarchyColorStudio
                 }
             }
 
+            if (expanded)
+                DrawPresetStyle(store, preset, style);
+
             GUILayout.Space(RowSpacing);
+        }
+
+        private static void DrawPresetStyle(HierarchyColorStore store, ColorPreset preset, HierarchyStyle style)
+        {
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.Space(StyleIndent);
+                using (new EditorGUILayout.VerticalScope())
+                {
+                    string presetId = preset.Id;
+                    var result = StyleEditorGUI.Draw(style, StyleFields.None, store.Appearance,
+                        icon => SetPresetIcon(presetId, icon));
+                    if (result.Changed != StyleFields.None)
+                    {
+                        UndoScope.RecordContinuous(store, UiStrings.UndoEditPresets);
+                        preset.Style = style.With(result.Values, result.Changed);
+                        HierarchyColorService.NotifySettingsChanged();
+                    }
+
+                    var previewRect = EditorGUILayout.GetControlRect(false, EditorGUIUtility.singleLineHeight + 2f);
+                    previewRect = EditorGUI.PrefixLabel(previewRect, new GUIContent(UiStrings.LabelPreview));
+                    StylePreviewGUI.DrawRow(previewRect, preset.Style, store.Appearance,
+                        string.IsNullOrEmpty(preset.Name) ? "GameObject" : preset.Name);
+                    GUILayout.Space(4f);
+                }
+            }
+        }
+
+        private static void SetPresetIcon(string presetId, string icon)
+        {
+            var store = HierarchyColorService.Store;
+            var preset = store.FindPreset(presetId);
+            if (preset == null)
+                return;
+
+            var style = preset.Style;
+            style.Icon = icon;
+            UndoScope.Record(store, UiStrings.UndoEditPresets);
+            preset.Style = style;
+            HierarchyColorService.NotifySettingsChanged();
+        }
+
+        /// <summary>The parts of a style drawn over a color field: its icon and text color, without the color itself.</summary>
+        private static HierarchyStyle StyleOverlay(HierarchyStyle style)
+        {
+            style.HasColor = false;
+            return style;
         }
 
         private void DrawHexField(HierarchyColorStore store, ColorPreset preset)
         {
             string editKey = preset.Id;
             bool editing = m_HexEditKey == editKey;
-            string displayed = editing ? m_HexEditValue : ColorHex.ToDisplayHex(preset.Color);
+            bool hasColor = preset.Style.HasColor;
+            string displayed = editing ? m_HexEditValue : hasColor ? ColorHex.ToDisplayHex(preset.Color) : string.Empty;
 
             EditorGUI.BeginChangeCheck();
             string typed = EditorGUILayout.TextField(displayed, GUILayout.Width(HexWidth));
@@ -238,7 +314,8 @@ namespace CryNet.HierarchyColorStudio
                 }
             }
 
-            if (editing && Event.current.type == EventType.Repaint && !ColorHex.TryParse(m_HexEditValue, out _))
+            if (editing && Event.current.type == EventType.Repaint && !ColorHex.TryParse(m_HexEditValue, out _) &&
+                !(string.IsNullOrEmpty(m_HexEditValue) && !hasColor))
                 StudioStyles.DrawOutline(GUILayoutUtility.GetLastRect(), InvalidInputColor, 1f);
         }
 
@@ -247,7 +324,7 @@ namespace CryNet.HierarchyColorStudio
             if (preset == null || selection == null || selection.Count == 0)
                 return;
 
-            HierarchyColorService.Assign(selection, preset.Color, preset.Id, LastUsedColor.Scope);
+            HierarchyColorService.ApplyPreset(selection, preset, LastUsedColor.Scope);
         }
 
         private void QueueMove(int from, int to)
